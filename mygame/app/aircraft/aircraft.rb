@@ -48,26 +48,31 @@ class Aircraft
     @assigned_speed     = nil
     @autopilot = Autopilot.new(self)
 
-    @radar_target = RadarTarget.new(@callsign, @type, @wake_category)  
+
+    @radar_target = RadarTarget.new(@callsign)
   end
 
   def update_target
+    @radar_target.type = @type
+    @radar_target.cat = @wake_category
     @radar_target.alt = format("%03d",(@altitude/100))
     @radar_target.gspd = format( "%03d", @gspd)
 
-    radar_target.ghosts.count == 0 ? populate_ghosts : nil
+    @radar_target.ghosts.count == 0 ? populate_ghosts : nil
     
     @radar_target.ghosts.shift
-    @radar_target.ghosts.push[@radar_target.loc]
-    @radar_target.loc = @position
-    #Convert map location to pixels on screen
+    @radar_target.ghosts.push(@radar_target.loc)
+    @radar_target.loc = @position.dup
+    # Convert map location to pixels on screen
     @radar_target.loc.x *= GlobalParams::SCALE_FACTOR
     @radar_target.loc.y *= GlobalParams::SCALE_FACTOR
-    if @assigned_altitude > @altitude
-      @radar_target.clrd_alt = "↗" + format("%03d",(@assigned_altitude/100))
-    end
-    if @assigned_altitude < @altitude
-      @radar_target.clrd_alt = "↘" + format("%03d",(@assigned_altitude/100))
+    if @assigned_altitude
+      if @assigned_altitude > @altitude
+        @radar_target.clrd_alt = "↗" + format("%03d",(@assigned_altitude/100))
+      end
+      if @assigned_altitude < @altitude
+        @radar_target.clrd_alt = "↘" + format("%03d",(@assigned_altitude/100))
+      end
     end
   end
 

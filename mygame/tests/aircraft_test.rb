@@ -113,11 +113,18 @@ puts "Valores de profile Asignados"
 
 puts interpolator(top_speed, 500)
 
-learjet.assigned_altitude = 2000
+learjet.assigned_altitude = 35000
 learjet.autopilot.fly(weather)
 #puts learjet.altitude
 
+puts learjet.position.x*30
+puts learjet.position.y*30
+
 learjet.update_target
+
+puts learjet.position.x*30
+puts learjet.position.y*30
+
 
 puts "En el radar, el ATC ve al Learjet con un track de " + learjet.trk.to_s + " una altitud de " + learjet.radar_target.alt + " y una velocidad de " + learjet.gspd.to_s
 
@@ -134,3 +141,15 @@ puts learjet.heading
 
 puts learjet.position.x*30
 puts learjet.position.y*30
+
+for ghost in learjet.radar_target.ghosts
+  puts ghost
+end
+
+learjet.radar_target.emergency = true
+
+learjet.radar_target.generate_tag
+
+for line in learjet.radar_target.tag
+  puts line[0]
+end
