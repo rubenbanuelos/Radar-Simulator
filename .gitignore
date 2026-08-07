@@ -4,6 +4,7 @@ dragonruby-publish
 dragonruby-publish.exe
 dragonruby-bind
 dragonruby-bind.exe
+dragonruby-httpd.exe
 /tmp/
 /builds/
 /logs/
