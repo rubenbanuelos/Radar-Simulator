@@ -1,4 +1,4 @@
-require_relative '/radar/draw'
+require_relative 'radar/session'
 
 class Game
   
@@ -9,8 +9,8 @@ class Game
   def tick args
     args.state.timer += 1
 
-    draw_background args
-    draw_target(args)
+    s = Session.new
+    s.begin_session
 
   end
 

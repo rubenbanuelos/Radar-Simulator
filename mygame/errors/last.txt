@@ -1,0 +1,14 @@
+* EXCEPTION:
+* ERROR: Exception while requiring app/main.rb.
+* ERROR: Exception while requiring app/radar/session.rb.
+* ERROR: Exception while requiring app/radar/../aircraft/aircraft.rb.
+app/radar/../aircraft/aircraft.rb does not exist.
+** Backtrace:
+*** app/radar/session.rb:1
+*** app/main.rb:1
+** Backtrace:
+*** app/radar/session.rb:1
+*** app/main.rb:1
+** Backtrace:
+*** app/main.rb:1
+** Backtrace:

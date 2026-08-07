@@ -10,7 +10,7 @@ def draw_background args
   }
 end
 
-def draw_target(args)
+def draw_target(args, target)
 
   #Draw actual radar target
   args.outputs.sprites << {
