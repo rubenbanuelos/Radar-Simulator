@@ -1,7 +1,7 @@
-require_relative "../tools/vectors"
-require_relative "../tools/interpolator"
-require_relative "../tools/global_params"
-require_relative "../world/weather"
+require_relative "vectors"
+require_relative "interpolator"
+require_relative "global_params"
+require_relative "weather"
 
 class Autopilot
   #Here is where the logic that controls the aircraft lives

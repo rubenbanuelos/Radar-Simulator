@@ -11,20 +11,31 @@ def draw_background args
 end
 
 def draw_target(args, target)
-
   #Draw actual radar target
   args.outputs.sprites << {
-    x: 640,
-    y: 360,
+    x: target.loc.x,
+    y: target.loc.y,
     w: 3,
     h: 3,
     path: :solid,
-    r: 255,
-    g: 255,
-    b: 0,
-    a: 255
+    r: target.target_color[0],
+    g: target.target_color[1],
+    b: target.target_color[2],
+    a: target.target_color[3]
+  }
+
+  #Draw box around target
+  
+  args.outputs.borders << {
+    x: target.loc.x-3,
+    y: target.loc.y-3,
+    w: 9,
+    h: 9,
+    path: :solid,
+    r: target.target_color[0],
+    g: target.target_color[1],
+    b: target.target_color[2],
+    a: target.target_color[3]
   }
 
 end
-
-def

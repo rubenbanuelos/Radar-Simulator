@@ -22,6 +22,12 @@ class Session
 
   def begin_session args
     draw_background args
+    @aircrafts.each_value do |aircraft|
+      aircraft.update_target
+      aircraft.populate_ghosts
+      draw_target(args, aircraft.radar_target)
+
+    end
   end
 
 end
