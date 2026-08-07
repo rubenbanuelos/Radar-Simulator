@@ -1,7 +1,7 @@
 class RadarTarget
 
   #tag data
-  attr_accessor :callsign, :type, :alt, :gspd, :clrd_alt, :tag_position, :ghosts
+  attr_accessor :callsign, :type, :alt, :gspd, :clrd_alt, :tag_position, :ghosts, :tag
   #appearance
   attr_accessor :target_color, :ghost_color
   #flags
@@ -34,7 +34,7 @@ class RadarTarget
 
     @tag.push([callsign, yellow])
     @in_control ? @tag.push([type, yellow ]) : nil
-    
+
     if in_control
       @tag.push([(@alt + @clrd_alt), yellow])
     else
