@@ -11,16 +11,21 @@ class RadarTarget
     
     @target_color = [255,255,0,255]
     @ghost_color = [255,255,0,128]
-    @callsign = @callsign #Aircraft callsign
+    @callsign = callsign #Aircraft callsign
     @type = type + cat #Aircraft type and category
     @alt = "" #Aircraft altitude
     @gspd = "" #Aircraft ground speed
     @clrd_alt = nil #Aircraft current cleared altitude
     @tag_position = "BL"
     @tag = []
-    @target = []
     @ghosts = [] #Ghost tracks following the airplane
     @loc = Position.new(0,0)
+
+    @emergency = false
+    @mode_charlie = true
+    @in_control = true
+
+
   end
 
   def generate_tag
@@ -29,6 +34,14 @@ class RadarTarget
 
     @tag.push([callsign, yellow])
     @in_control ? @tag.push([type, yellow ]) : nil
+    
+    if in_control
+      @tag.push([(@alt + @clrd_alt), yellow])
+    else
+      @tag.push = [@alt, yellow]
+    end
+
+    @emergency ? @tag.push["*EMER*", red] : nil    
 
   end
 

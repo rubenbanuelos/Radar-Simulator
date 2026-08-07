@@ -2,6 +2,7 @@ require_relative "../radar/target"
 require_relative "../tools/vectors"
 require_relative "../tools/profile_sheet"
 require_relative "autopilot"
+require_relative "../tools/global_params"
 
 class Aircraft
   
@@ -53,7 +54,19 @@ class Aircraft
   def update_target
     @radar_target.alt = format("%03d",(@altitude/100))
     @radar_target.gspd = format( "%03d", @gspd)
-  end
+    @radar_target.ghosts.shift
+    @radar_target.ghosts.push[@radar_target.loc]
+    @radar_target.loc = @position
+    #Convert map location to pixels on screen
+    @radar_target.loc.x *= GlobalParams::SCALE_FACTOR
+    @radar_target.loc.y *= GlobalParams::SCALE_FACTOR
+  en
+    if @assigned_altitude > @altitude
+      @radar_target.clrd_alt = "↗" + format("%03d",(@assigned_altitude/100))
+    end
+    if @assigned_altitude < @altitude
+      @radar_target.clrd_alt = "↘" + format("%03d",(@assigned_altitude/100))
+    end
 
   def load_profile_sheet
   end
