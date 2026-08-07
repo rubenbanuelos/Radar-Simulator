@@ -1,8 +1,8 @@
-require_relative "../radar/target"
-require_relative "../tools/vectors"
-require_relative "../tools/profile_sheet"
+require_relative "target"
+require_relative "vectors"
+require_relative "profile_sheet"
 require_relative "autopilot"
-require_relative "../tools/global_params"
+require_relative "global_params"
 
 class Aircraft
   

@@ -1,6 +1,6 @@
-require_relative '../aircraft/aircraft'
-require_relative '../world/waypoint'
-require_relative '../world/weather'
+require_relative 'aircraft'
+require_relative 'waypoint'
+require_relative 'weather'
 require_relative 'draw'
 
 class Session

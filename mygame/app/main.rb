@@ -1,4 +1,4 @@
-require_relative 'radar/session'
+require_relative 'session'
 
 class Game
   
