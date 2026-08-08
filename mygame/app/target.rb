@@ -8,6 +8,8 @@ class RadarTarget
   attr_accessor :emergency, :mode_charlie
   attr_reader :in_control
   
+  attr_accessor :contact_lost, :contact_lost_stage_2
+  
   def initialize (callsign)
     
     @target_color = [255,255,0,255]
@@ -25,6 +27,10 @@ class RadarTarget
     @emergency = false
     @mode_charlie = true
     @in_control = true
+
+    #specific parameters for crash
+    @contact_lost = false
+    @contact_lost_stage_2 = false
     
   end
 
@@ -36,15 +42,18 @@ class RadarTarget
     @tag.push([@callsign, yellow])
     @in_control ? @tag.push([@type + @cat, yellow ]) : nil
 
-    if @clrd_alt == @alt 
-      @tag.push([@alt, yellow])
-    else
-      @tag.push([@alt + (@clrd_alt||""), yellow])
+    unless @contact_lost_stage_2
+      if @clrd_alt == @alt 
+        @tag.push([@alt, yellow])
+      else
+        @tag.push([@alt + (@clrd_alt||""), yellow])
+      end
     end
 
     
-
-    @in_control ? @tag.push([@gspd, yellow]) : nil
+    unless @contact_lost_stage_2
+      @in_control ? @tag.push([@gspd, yellow]) : nil
+    end
 
     @emergency ? @tag.push(["*EMER*", red]) : nil    
 

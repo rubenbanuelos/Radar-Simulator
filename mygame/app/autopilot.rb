@@ -63,14 +63,12 @@ class Autopilot
     @aircraft.heading = change_heading
 
     if @alert
-      puts "entra al if"
       unless @alert_counter == 0
         if @alert_flag
           @aircraft.callsign << @alert_label
           @alert_flag = false
           @alert_counter -= 1
         else
-          puts @alert_label.class
           for i in 1..@alert_label.length
             @aircraft.callsign.chop!
           end

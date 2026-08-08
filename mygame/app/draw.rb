@@ -27,19 +27,22 @@ def draw_status(args, status)
   end
 end
 
+
 def draw_target(args, target)
   #Draw actual radar target
-  args.outputs.sprites << {
-    x: target.loc.x,
-    y: target.loc.y,
-    w: 3,
-    h: 3,
-    path: :solid,
-    r: target.target_color[0],
-    g: target.target_color[1],
-    b: target.target_color[2],
-    a: target.target_color[3]
-  }
+  unless target.contact_lost
+    args.outputs.sprites << {
+      x: target.loc.x,
+      y: target.loc.y,
+      w: 3,
+      h: 3,
+      path: :solid,
+      r: target.target_color[0],
+      g: target.target_color[1],
+      b: target.target_color[2],
+      a: target.target_color[3]
+    }
+  end
 
   #Draw box around target
   
