@@ -79,15 +79,268 @@ class Aircraft
   def populate_ghosts
     #extrapolate previous positions based on current speed to create initial set of ghost tracks
     reverse_heading = (@heading + 180) % 360 #Obtain heading opposite to the aircraft current movement
-    step = get_cartesian_coordinates(@gspd / 720, reverse_heading)
-
+    step = get_cartesian_coordinates(@ias / 720, reverse_heading)
 
     for i in 1..5
-      @radar_target.ghosts.push(Position.new(@position.x + step[0]*i, @position.y + step[1]*i))
+      @radar_target.ghosts.push(
+        
+        Position.new(
+          (@position.x + step[0]*i)*GlobalParams::SCALE_FACTOR, 
+          (@position.y + step[1]*i)*GlobalParams::SCALE_FACTOR
+        )
+      )
     end
   end
   
-  def load_profile_sheet
+  def load_profile_sheet(type)
+    
+    if type == "Jet"
+      climb = [
+        Profile.new(4000, 5000),
+        Profile.new(3000, 10000),
+        Profile.new(2000, 20000),
+        Profile.new(1500, 30000),
+        Profile.new(1000, 100000)
+      ]
+
+      descent = [
+        Profile.new(-750, 0),
+        Profile.new(-1000, 5000),
+        Profile.new(-1500, 10000),
+        Profile.new(-2000, 20000),
+        Profile.new(-3000, 30000),
+        Profile.new(-4000, 100000)
+      ]
+
+      top_speed = [
+        Profile.new(250, 0),
+        Profile.new(250, 10000),
+        Profile.new(350, 20000),
+        Profile.new(300, 30000),
+        Profile.new(280, 35000),
+        Profile.new(250, 100000)
+      ]
+
+      cruise_speed = [
+        Profile.new(250, 0),
+        Profile.new(250, 10000),
+        Profile.new(330, 20000),
+        Profile.new(280, 30000),
+        Profile.new(250, 35000),
+        Profile.new(230, 100000)
+      ]
+
+      acceleration_profile = [
+        Profile.new(6.0, 0),
+        Profile.new(3.0, 50000),
+        Profile.new(1.5, 10000),
+        Profile.new(1.0, 20000),
+        Profile.new(0.8, 40000)
+      ]
+
+      deceleration_profile = [
+        Profile.new(-2.0, 0),
+        Profile.new(-3.0, 50000),
+        Profile.new(-3.0, 10000),
+        Profile.new(-3.0, 20000),
+        Profile.new(-3.0, 40000)
+      ]
+
+      stall_speed = 140
+    end
+
+    if type == "Helicopter"
+      climb = [
+        Profile.new(2000, 5000),
+        Profile.new(1000, 10000),
+        Profile.new(500 , 100000)
+      ]
+
+      descent = [
+        Profile.new(-200,  1000),
+        Profile.new(-1000, 5000),
+        Profile.new(-2000, 10000),
+        Profile.new(-2500, 100000)
+      ]
+
+      top_speed = [
+        Profile.new(125, 0),
+        Profile.new(80, 20000),
+      ]
+
+      cruise_speed = [
+        Profile.new(110, 0),
+        Profile.new(80, 20000)
+      ]
+
+      acceleration_profile = [
+        Profile.new(6.0, 0),
+        Profile.new(3.0, 50000),
+        Profile.new(1.5, 20000)
+      ]
+
+      deceleration_profile = [
+        Profile.new(-2.0, 0),
+        Profile.new(-3.0, 50000),
+        Profile.new(-3.0, 20000),
+      ]
+
+      stall_speed = 0
+    end
+  
+  if type == "Turboprop Multi-Engine"
+      climb = [
+        Profile.new(2000, 5000),
+        Profile.new(1500, 10000),
+        Profile.new(1000, 20000),
+        Profile.new(750,  30000),
+        Profile.new(500,  100000)
+      ]
+
+      descent = [
+        Profile.new(-750, 0),
+        Profile.new(-1000, 2500),
+        Profile.new(-1500, 5000),
+        Profile.new(-2000, 10000),
+        Profile.new(-3000, 20000),
+        Profile.new(-4000, 30000)
+      ]
+
+      top_speed = [
+        Profile.new(250, 0),
+        Profile.new(250, 10000),
+        Profile.new(220, 20000),
+        Profile.new(200, 30000),
+        Profile.new(180, 100000)
+      ]
+
+      cruise_speed = [
+        Profile.new(240, 0),
+        Profile.new(240, 10000),
+        Profile.new(200, 20000),
+        Profile.new(180, 30000),
+        Profile.new(160, 100000)
+      ]
+
+      acceleration_profile = [
+        Profile.new(5.0, 0),
+        Profile.new(3.0, 50000),
+        Profile.new(1.5, 10000),
+        Profile.new(1.0, 20000),
+        Profile.new(0.8, 35000)
+      ]
+
+      deceleration_profile = [
+        Profile.new(-2.0, 0),
+        Profile.new(-3.0, 50000),
+        Profile.new(-3.0, 10000),
+        Profile.new(-3.0, 20000),
+        Profile.new(-3.0, 35000)
+      ]
+
+      stall_speed = 100
+    end
+
+    if type == "Turboprop Single-Engine"
+      climb = [
+        Profile.new(1800, 5000),
+        Profile.new(1200, 10000),
+        Profile.new(800, 20000),
+        Profile.new(600,  30000),
+        Profile.new(500,  100000)
+      ]
+
+      descent = [
+        Profile.new(-500, 0),
+        Profile.new(-1000, 2500),
+        Profile.new(-1500, 5000),
+        Profile.new(-2000, 10000),
+        Profile.new(-2000, 20000)
+      ]
+
+      top_speed = [
+        Profile.new(120, 0),
+        Profile.new(100, 10000),
+        Profile.new(80, 20000),
+      ]
+
+      cruise_speed = [
+        Profile.new(100, 0),
+        Profile.new(90, 10000),
+        Profile.new(70, 20000)
+      ]
+
+      acceleration_profile = [
+        Profile.new(4.0, 0),
+        Profile.new(3.0, 50000),
+        Profile.new(1.5, 10000),
+        Profile.new(1.0, 20000)
+      ]
+
+      deceleration_profile = [
+        Profile.new(-2.0, 0),
+        Profile.new(-3.0, 50000),
+        Profile.new(-3.0, 10000),
+        Profile.new(-3.0, 20000)
+      ]
+
+      stall_speed = 50
+    end
+
+    if type == "Piston Single-Engine"
+      climb = [
+        Profile.new(1500, 5000),
+        Profile.new(1000, 10000),
+        Profile.new(750, 20000),
+        Profile.new(500,  30000),
+        Profile.new(300,  100000)
+      ]
+
+      descent = [
+        Profile.new(-500, 0),
+        Profile.new(-1000, 2500),
+        Profile.new(-1500, 5000),
+        Profile.new(-2000, 10000),
+        Profile.new(-2000, 20000)
+      ]
+
+      top_speed = [
+        Profile.new(100, 0),
+        Profile.new(80, 10000),
+        Profile.new(60, 20000),
+      ]
+
+      cruise_speed = [
+        Profile.new(85, 0),
+        Profile.new(70, 10000),
+        Profile.new(65, 20000)
+      ]
+
+      acceleration_profile = [
+        Profile.new(4.0, 0),
+        Profile.new(3.0, 50000),
+        Profile.new(1.5, 10000),
+        Profile.new(1.0, 20000)
+      ]
+
+      deceleration_profile = [
+        Profile.new(-2.0, 0),
+        Profile.new(-3.0, 50000),
+        Profile.new(-3.0, 10000),
+        Profile.new(-3.0, 20000)
+      ]
+
+      stall_speed = 50
+    end
+
+    @climb_profile = climb
+    @descent_profile = descent
+    @top_speed = top_speed
+    @cruise_speed = cruise_speed
+    @stall_speed = stall_speed
+    @acceleration_profile = acceleration_profile
+    @deceleration_profile = deceleration_profile
+
   end
 
 end

@@ -21,14 +21,16 @@ class Session
   end
 
   def begin_session args
-    draw_background args
-    @aircrafts.each_value do |aircraft|
+    draw_background args #Draws background
+    @aircrafts.each_value do |aircraft| #draws aircrafts in initial positions
       aircraft.update_target
       aircraft.populate_ghosts
-      draw_target(args, aircraft.radar_target)
+      
+      draw_target(args, aircraft.radar_target) #draw targets and ghosts
       if aircraft.radar_target.in_control
-        draw_tag(args, aircraft.radar_target)
+        draw_tag(args, aircraft.radar_target) #draw tags for aircraft in control
       end
+
     end
   end
 
