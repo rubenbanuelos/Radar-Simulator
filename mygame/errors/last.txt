@@ -1,16 +1,23 @@
 * EXCEPTION:
-* ERROR:
-** method_missing: aircrafts
-** instance:       0
-** on class:       Integer
-** with modules:   [NumericDeprecated, ValueType, Comparable, PP::ObjectMixin, Kernel]
-** with values:    0
-** given args:     [[]]
-** exception:      can't define singleton
-** backtrace:
-app/main.rb:65:in initialize
-app/main.rb:89:in tick
+* ERROR: :+ method missing on ~Class~.
 
+#+begin_src ~Class#inspect~
+NIL
+#+end_src ~Class#inspect~
+
+
+
+The method named
+  :+
+with args
+  [nil]
+doesn't exist on [NilClass].
+
+(suggestions above)
 ** Backtrace:
-*** app/main.rb:65:in initialize
-*** app/main.rb:89:in tick
+*** app/target.rb:43:in generate_tag
+*** app/draw.rb:100:in draw_tag
+*** app/session.rb:52:in refresh_screen
+*** app/session.rb:47:in refresh_screen
+*** app/main.rb:74:in tick
+*** app/main.rb:91:in tick
