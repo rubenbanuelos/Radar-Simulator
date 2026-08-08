@@ -32,7 +32,7 @@ class Session
     
     status.push(t_local + " " + @tz + " " + t_utc + " UTC")
 
-
+    draw_status(args, status)
 
     draw_background args #Draws background
     @aircrafts.each_value do |aircraft| #draws aircrafts in initial positions
@@ -57,6 +57,7 @@ class Session
     
     status.push(t_local + " " + @tz + " " + t_utc + " UTC")
   
+    draw_status(args, status)
     draw_background args #Draws background
      
     @aircrafts.each_value do |aircraft| #draws aircrafts in initial positions

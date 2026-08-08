@@ -10,7 +10,21 @@ def draw_background args
   }
 end
 
-def draw_status
+def draw_status(args, status)
+  status.each_with_index do |line, i|
+    args.outputs.labels << {
+      x:  970,
+      y:  700 - i*25,
+      text: line,
+      size_enum: -3,
+      alignment_enum: 0,
+      r: 160,
+      g: 160,
+      b: 160,
+      a: 255,
+      font: "/mygame/fonts/FreeMonoBold.ttf"
+    }
+  end
 end
 
 def draw_target(args, target)
@@ -93,7 +107,7 @@ def draw_tag(args, target)
       g: line[1][1],
       b: line[1][2],
       a: line[1][3],
-      font: "/mygame/fonts/FreeMonoBold.ttf",
+      font: "/mygame/fonts/FreeMonoBold.ttf"
     }
   end
 
