@@ -15,13 +15,13 @@ def draw_status(args, status)
     args.outputs.labels << {
       x:  970,
       y:  700 - i*25,
-      text: line,
+      text: line[0],
       size_enum: -3,
       alignment_enum: 0,
-      r: 160,
-      g: 160,
-      b: 160,
-      a: 255,
+      r: line[1][0],
+      g: line[1][1],
+      b: line[1][2],
+      a: line[1][3],
       font: "/mygame/fonts/FreeMonoBold.ttf"
     }
   end

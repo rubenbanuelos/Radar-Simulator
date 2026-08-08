@@ -5,7 +5,7 @@ class RadarTarget
   #appearance
   attr_accessor :target_color, :ghost_color
   #flags
-  attr_accessor :emergency, :mode_charlie
+  attr_accessor :emergency, :mode_charlie, :mva
   attr_reader :in_control
   
   attr_accessor :contact_lost, :contact_lost_stage_2
@@ -27,6 +27,7 @@ class RadarTarget
     @emergency = false
     @mode_charlie = true
     @in_control = true
+    @mva = false
 
     #specific parameters for crash
     @contact_lost = false
@@ -56,6 +57,7 @@ class RadarTarget
     end
 
     @emergency ? @tag.push(["*EMER*", red]) : nil    
+    @mva ? @tag.push(["*MVA*", red]) : nil  
 
   end
 
@@ -66,7 +68,6 @@ class RadarTarget
     else
       @target_color = [255,255,0,128]
     end
-    puts @target_color
   end
 
 end
