@@ -26,7 +26,9 @@ class Session
       aircraft.update_target
       aircraft.populate_ghosts
       draw_target(args, aircraft.radar_target)
-
+      if aircraft.radar_target.in_control
+        draw_tag(args, aircraft.radar_target)
+      end
     end
   end
 

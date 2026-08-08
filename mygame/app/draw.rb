@@ -37,5 +37,23 @@ def draw_target(args, target)
     b: target.target_color[2],
     a: target.target_color[3]
   }
-
 end
+
+def draw_tag(args, target)
+  if target.tag_position = "BL"
+    args.outputs.lines << {
+      x:  target.loc.x-3,
+      y:  target.loc.y-3,
+      x2: target.loc.x-18,
+      y2: target.loc.y-18,
+      r: target.target_color[0],
+      g: target.target_color[1],
+      b: target.target_color[2],
+      a: target.target_color[3],
+      blendmode_enum: 1
+    }
+
+  end
+end
+
+
