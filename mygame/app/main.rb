@@ -13,8 +13,6 @@ class Game
 
      @s.sector = "PAZA    -   ANCHORAGE CTR"
      @s.freq   = "SECTOR 13     130.200 MHZ"
-     #time     = "NN:NN:NN AST NN:NN:NN UTC"
-
      @s.time = Time.new(2009,11,13,16,31,19)
      @s.tz = "AST"
 
@@ -62,6 +60,8 @@ class Game
     @s.aircrafts["N901AST"].load_profile_sheet("Helicopter")
 
     @s.aircrafts["N901AST"].autopilot.alert(" *IDENT*")
+    #@s.aircrafts["N901AST"].radar_target.emergency = true
+    @s.aircrafts["N901AST"].radar_target.mva = true
     #@s.aircrafts["N901AST"].radar_target.contact_lost = true
     #@s.aircrafts["N901AST"].radar_target.contact_lost_stage_2 = true
 
