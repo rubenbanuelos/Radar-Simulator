@@ -1,4 +1,4 @@
-require_relative "../tools/vectors"
+require_relative "vectors"
 
 class Weather
   attr_accessor :temperature_layers, :wind_layers, :altimeter

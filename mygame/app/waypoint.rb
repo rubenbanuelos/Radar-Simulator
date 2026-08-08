@@ -1,4 +1,4 @@
-require_relative "../tools/vectors"
+require_relative "vectors"
 
 Waypoint = Struct.new(
     :name,

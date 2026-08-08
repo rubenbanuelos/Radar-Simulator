@@ -5,7 +5,8 @@ class RadarTarget
   #appearance
   attr_accessor :target_color, :ghost_color
   #flags
-  attr_accessor :emergency, :mode_charlie, :in_control
+  attr_accessor :emergency, :mode_charlie
+  attr_reader :in_control
   
   def initialize (callsign)
     
@@ -30,6 +31,7 @@ class RadarTarget
   def generate_tag
     yellow = [255,255,0]
     red = [255,0,0]
+    @tag = []
 
     @tag.push([@callsign, yellow])
     @in_control ? @tag.push([@type + @cat, yellow ]) : nil
@@ -46,6 +48,16 @@ class RadarTarget
 
     @emergency ? @tag.push(["*EMER*", red]) : nil    
 
+  end
+
+  def in_control=(val)
+    @in_control = val
+    if val == true
+      @target_color = [255,255,0,255]
+    else
+      @target_color = [255,255,0,128]
+    end
+    puts @target_color
   end
 
 end

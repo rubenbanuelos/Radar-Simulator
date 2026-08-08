@@ -1,87 +1,92 @@
-module Main
-  def tick args
-    args.state.logo_rect ||= { x: 576,
-                               y: 200,
-                               w: 128,
-                               h: 101 }
+require_relative 'session'
+require_relative 'weather'
+require_relative 'vectors'
 
-    args.outputs.labels  << { x: 640,
-                              y: 600,
-                              text: 'Hello World!',
-                              size_px: 30,
-                              anchor_x: 0.5,
-                              anchor_y: 0.5 }
+class Game
 
-    args.outputs.labels  << { x: 640,
-                              y: 510,
-                              text: "Documentation is located under the ./docs directory. 150+ samples are located under the ./samples directory.",
-                              size_px: 20,
-                              anchor_x: 0.5,
-                              anchor_y: 0.5 }
+  attr_accessor :s
+  
+  def initialize args
+    args.state.timer ||= 0
 
-    args.outputs.labels  << { x: 640,
-                              y: 480,
-                              text: "You can also access these docs online at docs.dragonruby.org.",
-                              size_px: 20,
-                              anchor_x: 0.5,
-                              anchor_y: 0.5 }
+     @s = Session.new
 
-    args.outputs.labels  << { x: 640,
-                              y: 400,
-                              text: "The code that powers what you're seeing right now is located at ./mygame/app/main.rb.",
-                              size_px: 20,
-                              anchor_x: 0.5,
-                              anchor_y: 0.5 }
+     @s.sector = "PAZA    -   ANCHORAGE CTR"
+     @s.freq   = "SECTOR 13     130.200 MHZ"
+     #time     = "NN:NN:NN AST NN:NN:NN UTC"
 
-    args.outputs.labels  << { x: 640,
-                              y: 380,
-                              text: "(you can change the code while the app is running and see the updates live)",
-                              size_px: 20,
-                              anchor_x: 0.5,
-                              anchor_y: 0.5 }
+     @s.time = Time.new(2009,11,13,16,31,19)
+     @s.tz = "AST"
 
-    args.outputs.sprites << { x: args.state.logo_rect.x,
-                              y: args.state.logo_rect.y,
-                              w: args.state.logo_rect.w,
-                              h: args.state.logo_rect.h,
-                              path: 'dragonruby.png',
-                              angle: Kernel.tick_count }
+     puts "Inicializando"
 
-    args.outputs.labels  << { x: 640,
-                              y: 180,
-                              text: "(use arrow keys to move the logo around)",
-                              size_px: 20,
-                              anchor_x: 0.5,
-                              anchor_y: 0.5 }
+    winds = [
+      Profile.new(Wind.new(5.0, 70.0), 0),
+      Profile.new(Wind.new(12.0, 120.0), 1000),
+      Profile.new(Wind.new(18.0, 170.0), 5000),
+      Profile.new(Wind.new(25.0, 225.0), 10000),
+      Profile.new(Wind.new(38.0, 190.0), 25000),
+      Profile.new(Wind.new(55.0 ,155.0), 45000)
+    ]
 
-    args.outputs.labels  << { x: 640,
-                              y: 80,
-                              text: 'Join the Discord Server! https://discord.dragonruby.org',
-                              size_px: 30,
-                              anchor_x: 0.5 }
+    temperatures = [
+      Profile.new(10.0, 0),
+      Profile.new(0.0, 3000),
+      Profile.new(-10.0,10000),
+      Profile.new(-20.0, 20000),
+      Profile.new(-40.0, 50000)
+    ]
 
-    if args.inputs.keyboard.left
-      args.state.logo_rect.x -= 10
-    elsif args.inputs.keyboard.right
-      args.state.logo_rect.x += 10
-    end
+    weather = Weather.new
+    weather.altimeter = 29.72
+    weather.wind_layers = winds
+    weather.temperature_layers = temperatures
 
-    if args.inputs.keyboard.down
-      args.state.logo_rect.y -= 10
-    elsif args.inputs.keyboard.up
-      args.state.logo_rect.y += 10
-    end
+    @s.weather = weather
 
-    if args.state.logo_rect.x > 1280
-      args.state.logo_rect.x = 0
-    elsif args.state.logo_rect.x < 0
-      args.state.logo_rect.x = 1280
-    end
+    @s.waypoints = {  
+      "WGR" => Waypoint.new("Whitegrass",      Position.new(177.21,54.59) ),
+      "JOH" => Waypoint.new("Johnstone Point", Position.new(115.73,62.82) ),
+      "MNL" => Waypoint.new("Mineral Creek",   Position.new(123.46,105.48)),
+      "ANC" => Waypoint.new("Anchorage",       Position.new(9.5,129.68)   )
+    }
 
-    if args.state.logo_rect.y > 720
-      args.state.logo_rect.y = 0
-    elsif args.state.logo_rect.y < 0
-      args.state.logo_rect.y = 720
-    end
+    @s.add_aircraft("N901AST")
+    @s.aircrafts["N901AST"].type = "B06"
+    @s.aircrafts["N901AST"].wake_category = "L"
+    @s.aircrafts["N901AST"].altitude = 6500.0
+    @s.aircrafts["N901AST"].ias = 95.0
+    @s.aircrafts["N901AST"].position = Position.new(204.58,33.26)
+    @s.aircrafts["N901AST"].assigned_waypoint = s.waypoints["WGR"]
+    @s.aircrafts["N901AST"].radar_target.tag_position = "TR"
+    @s.aircrafts["N901AST"].load_profile_sheet("Helicopter")
+
+    @s.begin_session args
+
   end
+
+  def tick args
+    args.state.timer += 1
+    @s.refresh_screen args
+
+    #begin flight update loop
+    if args.state.timer % 60 == 0
+      @s.step
+    end
+
+    if args.state.timer % 300 == 0
+      @s.update
+    end
+
+  end
+
+end
+
+def tick args
+  $game ||= Game.new(args)
+  $game.tick args
+end
+
+def reset args
+  $game = nil
 end

@@ -1,8 +1,8 @@
 #Check how the aircraft works
-require_relative "../app/aircraft/aircraft"
-require_relative "../app/tools/interpolator"
-require_relative "../app/world/waypoint"
-require_relative "../app/world/weather"
+require_relative "../app/aircraft"
+require_relative "../app/interpolator"
+require_relative "../app/waypoint"
+require_relative "../app/weather"
 
 #Create weather pattern
 winds = [

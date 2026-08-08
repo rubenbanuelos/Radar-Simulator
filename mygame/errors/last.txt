@@ -1,0 +1,18 @@
+* EXCEPTION:
+* ERROR: :minute method missing on ~Time~.
+
+#+begin_src ~Time#inspect~
+2009-11-13 16:31:19 -0600
+#+end_src ~Time#inspect~
+
+
+
+The method named
+  :minute
+doesn't exist on [Time, #<Class:#<Time:0x139ff40ff90>>, Comparable].
+
+(suggestions above)
+** Backtrace:
+*** app/session.rb:30:in begin_session
+*** app/main.rb:64:in initialize
+*** app/main.rb:86:in tick
