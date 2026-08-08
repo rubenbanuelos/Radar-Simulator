@@ -58,8 +58,10 @@ class Game
     @s.aircrafts["N901AST"].ias = 95.0
     @s.aircrafts["N901AST"].position = Position.new(204.58,33.26)
     @s.aircrafts["N901AST"].assigned_waypoint = s.waypoints["WGR"]
-    @s.aircrafts["N901AST"].radar_target.tag_position = "TR"
+    @s.aircrafts["N901AST"].radar_target.tag_position = "BL"
     @s.aircrafts["N901AST"].load_profile_sheet("Helicopter")
+
+    @s.aircrafts["N901AST"].autopilot.alert(" *IDENT*")
 
     @s.begin_session args
 
