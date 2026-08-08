@@ -62,6 +62,8 @@ class Game
     @s.aircrafts["N901AST"].load_profile_sheet("Helicopter")
 
     @s.aircrafts["N901AST"].autopilot.alert(" *IDENT*")
+    #@s.aircrafts["N901AST"].radar_target.contact_lost = true
+    #@s.aircrafts["N901AST"].radar_target.contact_lost_stage_2 = true
 
     @s.begin_session args
 

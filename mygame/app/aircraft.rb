@@ -61,7 +61,11 @@ class Aircraft
     @radar_target.ghosts.count == 0 ? populate_ghosts : nil
     
     @radar_target.ghosts.shift
-    @radar_target.ghosts.push(@radar_target.loc)
+    unless @radar_target.contact_lost
+      @radar_target.ghosts.push(@radar_target.loc)
+    else
+      @radar_target.ghosts.push(Position.new(-4,-4))
+    end
     @radar_target.loc = @position.dup
     # Convert map location to pixels on screen
     @radar_target.loc.x *= GlobalParams::SCALE_FACTOR

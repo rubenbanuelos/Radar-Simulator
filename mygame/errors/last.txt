@@ -1,22 +1,16 @@
 * EXCEPTION:
-* ERROR: :- method missing on ~FalseClass~.
+* ERROR:
+** method_missing: aircrafts
+** instance:       0
+** on class:       Integer
+** with modules:   [NumericDeprecated, ValueType, Comparable, PP::ObjectMixin, Kernel]
+** with values:    0
+** given args:     [[]]
+** exception:      can't define singleton
+** backtrace:
+app/main.rb:65:in initialize
+app/main.rb:89:in tick
 
-#+begin_src ~FalseClass#inspect~
-false
-#+end_src ~FalseClass#inspect~
-
-
-
-The method named
-  :-
-with args
-  [1]
-doesn't exist on [FalseClass, NilClassFalseClass, ValueType].
-
-(suggestions above)
 ** Backtrace:
-*** app/autopilot.rb:71:in fly
-*** app/session.rb:77:in step
-*** app/session.rb:76:in step
-*** app/main.rb:76:in tick
+*** app/main.rb:65:in initialize
 *** app/main.rb:89:in tick
