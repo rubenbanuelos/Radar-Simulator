@@ -5,15 +5,16 @@ require_relative 'draw'
 
 class Session
   #Class containing a radar session
-  attr_accessor :aircrafts, :waypoints, :weather, :sector, :time, :tz, :events 
+  attr_accessor :aircrafts, :waypoints, :weather, :sector, :time, :tz, :events,:freq 
   
   def initialize
     @aircrafts = {}
     @waypoints = {}
     @weather = Weather.new
     @sector = ""
-    time = Time.new
-    tz = ""
+    @freq = ""
+    @time = Time.new
+    @tz = ""
   end
 
   def add_aircraft(callsign)
@@ -21,6 +22,18 @@ class Session
   end
 
   def begin_session args
+    #Create Status text
+    status = []
+    status.push(@sector)
+    status.push(@freq)
+    
+    t_local = format("%02d", @time.hour ).to_s + ":" + format("%02d", @time.min) + ":" + format("%02d", @time.sec)
+    t_utc = format("%02d", (@time.hour + 8) % 24).to_s + ":" + format("%02d", @time.min) + ":" + format("%02d", @time.sec)
+    
+    status.push(t_local + " " + @tz + " " + t_utc + " UTC")
+
+
+
     draw_background args #Draws background
     @aircrafts.each_value do |aircraft| #draws aircrafts in initial positions
       aircraft.update_target
@@ -35,8 +48,17 @@ class Session
   end
 
   def refresh_screen args
-    draw_background args #Draws background
+    status = []
+    status.push(@sector)
+    status.push(@freq)
     
+    t_local = format("%02d", @time.hour ).to_s + ":" + format("%02d", @time.min) + ":" + format("%02d", @time.sec)
+    t_utc = format("%02d", (@time.hour + 8) % 24).to_s + ":" + format("%02d", @time.min) + ":" + format("%02d", @time.sec)
+    
+    status.push(t_local + " " + @tz + " " + t_utc + " UTC")
+  
+    draw_background args #Draws background
+     
     @aircrafts.each_value do |aircraft| #draws aircrafts in initial positions
       
       draw_target(args, aircraft.radar_target) #draw targets and ghosts
@@ -52,6 +74,7 @@ class Session
   def step
     @aircrafts.each_value do |aircraft|
       aircraft.autopilot.fly(weather)
+      @time += 1
     end
   end
 

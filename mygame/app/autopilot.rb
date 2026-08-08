@@ -15,7 +15,7 @@ class Autopilot
 
   def fly(weather)
     #Calculate groundspeed and track and update data for aircraft
-    puts "volando"
+    
     #Compute true airspeed
     tas = calculate_tas(weather, @aircraft.altitude, @aircraft.ias)
     vtas = get_cartesian_coordinates(tas, @aircraft.heading)

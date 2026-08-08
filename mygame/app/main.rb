@@ -11,6 +11,13 @@ class Game
 
      @s = Session.new
 
+     @s.sector = "PAZA    -   ANCHORAGE CTR"
+     @s.freq   = "SECTOR 13     130.200 MHZ"
+     #time     = "NN:NN:NN AST NN:NN:NN UTC"
+
+     @s.time = Time.new(2009,11,13,16,31,19)
+     @s.tz = "AST"
+
      puts "Inicializando"
 
     winds = [
@@ -37,10 +44,12 @@ class Game
 
     @s.weather = weather
 
-    @s.waypoints["WGR"] = Waypoint.new(
-      "WGR",
-      Position.new(177.21,66.17)
-    )
+    @s.waypoints = {  
+      "WGR" => Waypoint.new("Whitegrass",      Position.new(177.21,54.59) ),
+      "JOH" => Waypoint.new("Johnstone Point", Position.new(115.73,62.82) ),
+      "MNL" => Waypoint.new("Mineral Creek",   Position.new(123.46,105.48)),
+      "ANC" => Waypoint.new("Anchorage",       Position.new(9.5,129.68)   )
+    }
 
     @s.add_aircraft("N901AST")
     @s.aircrafts["N901AST"].type = "B06"
@@ -62,12 +71,10 @@ class Game
 
     #begin flight update loop
     if args.state.timer % 60 == 0
-      puts "step"
       @s.step
     end
 
     if args.state.timer % 300 == 0
-      puts "step"
       @s.update
     end
 
