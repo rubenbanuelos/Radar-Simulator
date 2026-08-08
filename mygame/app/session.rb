@@ -34,4 +34,32 @@ class Session
     end
   end
 
+  def refresh_screen args
+    draw_background args #Draws background
+    
+    @aircrafts.each_value do |aircraft| #draws aircrafts in initial positions
+      
+      draw_target(args, aircraft.radar_target) #draw targets and ghosts
+      
+      if aircraft.radar_target.in_control
+        draw_tag(args, aircraft.radar_target) #draw tags for aircraft in control
+      end
+    end
+
+
+  end
+
+  def step
+    @aircrafts.each_value do |aircraft|
+      aircraft.autopilot.fly(weather)
+    end
+  end
+
+
+  def update
+    @aircrafts.each_value do |aircraft|
+      aircraft.update_target
+    end
+  end
+
 end

@@ -31,6 +31,7 @@ class RadarTarget
   def generate_tag
     yellow = [255,255,0]
     red = [255,0,0]
+    @tag = []
 
     @tag.push([@callsign, yellow])
     @in_control ? @tag.push([@type + @cat, yellow ]) : nil
