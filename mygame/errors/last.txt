@@ -1,18 +1,22 @@
 * EXCEPTION:
-* ERROR: :minute method missing on ~Time~.
+* ERROR: :- method missing on ~FalseClass~.
 
-#+begin_src ~Time#inspect~
-2009-11-13 16:31:19 -0600
-#+end_src ~Time#inspect~
+#+begin_src ~FalseClass#inspect~
+false
+#+end_src ~FalseClass#inspect~
 
 
 
 The method named
-  :minute
-doesn't exist on [Time, #<Class:#<Time:0x139ff40ff90>>, Comparable].
+  :-
+with args
+  [1]
+doesn't exist on [FalseClass, NilClassFalseClass, ValueType].
 
 (suggestions above)
 ** Backtrace:
-*** app/session.rb:30:in begin_session
-*** app/main.rb:64:in initialize
-*** app/main.rb:86:in tick
+*** app/autopilot.rb:71:in fly
+*** app/session.rb:77:in step
+*** app/session.rb:76:in step
+*** app/main.rb:76:in tick
+*** app/main.rb:89:in tick

@@ -11,11 +11,15 @@ class Autopilot
     @target_heading = 0
     @target_speed = 0
     @target_track = 0
+    @alert = false
+    @alert_counter = 0
+    @alert_flag = false
+    @alert_label = ""
   end
 
   def fly(weather)
     #Calculate groundspeed and track and update data for aircraft
-    
+
     #Compute true airspeed
     tas = calculate_tas(weather, @aircraft.altitude, @aircraft.ias)
     vtas = get_cartesian_coordinates(tas, @aircraft.heading)
@@ -58,6 +62,33 @@ class Autopilot
     @aircraft.ias = change_speed
     @aircraft.heading = change_heading
 
+    if @alert
+      puts "entra al if"
+      unless @alert_counter == 0
+        if @alert_flag
+          @aircraft.callsign << @alert_label
+          @alert_flag = false
+          @alert_counter -= 1
+        else
+          puts @alert_label.class
+          for i in 1..@alert_label.length
+            @aircraft.callsign.chop!
+          end
+          @alert_flag = true
+          @alert_counter -= 1
+        end 
+      else
+        @alert = false
+      end
+    end
+
+  end
+
+  def alert(alert)
+    @alert_label = alert
+    @alert = true
+    @alert_counter = 10
+    @alert_flag = true
   end
 
   def get_control_input(delta, change_rate)
