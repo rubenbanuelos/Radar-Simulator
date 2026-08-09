@@ -80,6 +80,14 @@ class Autopilot
       end
     end
 
+    if @aircraft.ho_rcv = true
+      @aircraft.rcv_countdown == 0 ? @aircraft.ho_rcv = false : @aircraft.rcv_countdown -= 1
+    end
+
+    if @aircraft.ho_snt = true
+      @aircraft.snt_countdown == 0 ? @aircraft.ho_snt = false : @aircraft.snt_countdown -= 1
+    end
+
   end
 
   def alert(alert)
@@ -97,9 +105,11 @@ class Autopilot
   def change_altitude
     #get delta
     delta = @target_altitude - @aircraft.altitude 
+    puts delta
     
     #Aircraft is at target altitude
     if delta == 0
+      puts "hola"
       @aircraft.assigned_altitude = nil
       return @aircraft.altitude
     end
