@@ -5,12 +5,13 @@ require_relative 'draw'
 
 class Session
   #Class containing a radar session
-  attr_accessor :aircrafts, :waypoints, :weather, :sector, :time, :tz, :events,:freq 
+  attr_accessor :aircrafts, :waypoints, :weather, :sector, :time, :tz, :events,:freq, :lobby
   
   def initialize
     @aircrafts = {}
     @waypoints = {}
     @events    = {}
+    @lobby     = {}
     @weather = Weather.new
     @sector  = ""
     @freq    = ""
@@ -20,6 +21,10 @@ class Session
 
   def add_aircraft(callsign)
     @aircrafts[callsign] = Aircraft.new(callsign)
+  end
+
+  def add_aircraft_to_lobby(callsign)
+    @lobby[callsign] = Aircraft.new(callsign)
   end
 
   def begin_session args
@@ -83,7 +88,7 @@ class Session
       
       draw_target(args, aircraft.radar_target) #draw targets and ghosts
       
-      if aircraft.radar_target.in_control
+      if aircraft.radar_target.mode_charlie
         draw_tag(args, aircraft.radar_target) #draw tags for aircraft in control
       end
     end
@@ -114,6 +119,10 @@ class Session
       event.call if tick == time*60
     end
 
+  end
+
+  def spawn_aicraft(aircraft)
+    @aircrafts[aircraft.callsign] = aircraft
   end
 
 end

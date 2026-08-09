@@ -49,19 +49,37 @@ class Game
       "ANC" => Waypoint.new("Anchorage",       Position.new(9.5,129.68)   )
     }
 
-    @s.add_aircraft("N901AST")
-    @s.aircrafts["N901AST"].type = "B06"
-    @s.aircrafts["N901AST"].wake_category = "L"
-    @s.aircrafts["N901AST"].altitude = 6500.0
-    @s.aircrafts["N901AST"].ias = 95.0
-    @s.aircrafts["N901AST"].position = Position.new(204.58,33.26)
-    @s.aircrafts["N901AST"].assigned_waypoint = s.waypoints["WGR"]
-    @s.aircrafts["N901AST"].radar_target.tag_position = "BL"
-    @s.aircrafts["N901AST"].load_profile_sheet("Helicopter")
+    @s.add_aircraft_to_lobby("N901AST")
+    @s.lobby["N901AST"].type = "B06"
+    @s.lobby["N901AST"].wake_category = "L"
+    @s.lobby["N901AST"].altitude = 6500.0
+    @s.lobby["N901AST"].ias = 95.0
+    @s.lobby["N901AST"].position = Position.new(204.58,33.26)
+    @s.lobby["N901AST"].assigned_waypoint = s.waypoints["WGR"]
+    @s.lobby["N901AST"].radar_target.tag_position = "BL"
+    @s.lobby["N901AST"].load_profile_sheet("Helicopter")
+    @s.lobby["N901AST"].radar_target.mode_charlie = false
+
+    
+
+    @s.add_aircraft("QXE178")
+    @s.aircrafts["QXE178"].type = "DH8D"
+    @s.aircrafts["QXE178"].wake_category = "M"
+    @s.aircrafts["QXE178"].altitude = 1500.0
+    @s.aircrafts["QXE178"].assigned_altitude = 25000.0
+    @s.aircrafts["QXE178"].ias = 120.0
+    @s.aircrafts["QXE178"].heading = 20
+    @s.aircrafts["QXE178"].position = Position.new(179.73,59.13)
+    #@s.aircrafts["QXE178"].assigned_waypoint = s.waypoints["WGR"]
+    @s.aircrafts["QXE178"].radar_target.tag_position = "BL"
+    @s.aircrafts["QXE178"].load_profile_sheet("Turboprop Multi-Engine")
+    @s.aircrafts["QXE178"].radar_target.in_control = false
 
 
     @s.events = {
-      5 => -> { @s.aircrafts["N901AST"].autopilot.alert(" *IDENT*") }
+      5  => -> { @s.spawn_aicraft(@s.lobby["N901AST"]) },
+      61  => -> { @s.aircrafts["QXE178"].radar_target.in_control = true },
+      62  => -> { @s.aircrafts["QXE178"].receive_handover_request }
     }
 
 

@@ -5,8 +5,8 @@ class RadarTarget
   #appearance
   attr_accessor :target_color, :ghost_color
   #flags
-  attr_accessor :emergency, :mode_charlie, :mva
-  attr_reader :in_control
+  attr_accessor :emergency, :in_control, :mva
+  attr_reader :mode_charlie
   
   attr_accessor :contact_lost, :contact_lost_stage_2
   
@@ -47,7 +47,11 @@ class RadarTarget
       if @clrd_alt == @alt 
         @tag.push([@alt, yellow])
       else
-        @tag.push([@alt + (@clrd_alt||""), yellow])
+        if @in_control
+          @tag.push([@alt + (@clrd_alt||""), yellow])
+        else
+          @tag.push([@alt, yellow])
+        end
       end
     end
 
@@ -61,8 +65,8 @@ class RadarTarget
 
   end
 
-  def in_control=(val)
-    @in_control = val
+  def mode_charlie=(val)
+    @mode_charlie = val
     if val == true
       @target_color = [255,255,0,255]
     else
