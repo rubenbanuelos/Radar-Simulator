@@ -58,11 +58,12 @@ class Game
     @s.aircrafts["N901AST"].assigned_waypoint = s.waypoints["WGR"]
     @s.aircrafts["N901AST"].radar_target.tag_position = "BL"
     @s.aircrafts["N901AST"].load_profile_sheet("Helicopter")
-    #@s.aircrafts["N901AST"].autopilot.alert(" *IDENT*")
+
 
     @s.events = {
       5 => -> { @s.aircrafts["N901AST"].autopilot.alert(" *IDENT*") }
     }
+
 
 
 

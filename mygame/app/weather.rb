@@ -42,13 +42,16 @@ def interpolate_wind (weather, altitude)
   hw_x = hw[0]
   hw_y = hw[1]
 
+
   if lower_altitude == higher_altitude
-    interpolation = lower_wind
+    return lower_wind
+    
   else
     f = (altitude-lower_altitude).to_f / (higher_altitude - lower_altitude).to_f
     iw_x = lw_x.to_f + f*(hw_x-lw_x).to_f
     iw_y = lw_y.to_f + f*(hw_y-lw_y).to_f
   end
+
 
   iw = get_polar_coordinates(iw_x,iw_y)
 

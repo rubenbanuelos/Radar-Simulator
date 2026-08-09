@@ -48,17 +48,33 @@ class Session
       status.push(["**ACTIVE EMERGENCY**", red])
     end
 
-    if (@aircrafts.all? {|_, aircraft | aircraft.radar_target.emergency == false})
-      status.delete(["**ACTIVE EMERGENCY**", red])
-    end
+    #if (@aircrafts.all? {|_, aircraft | aircraft.radar_target.emergency == false})
+    #  status.delete(["**ACTIVE EMERGENCY**", red])
+    #end
 
     if (@aircrafts.any? {|_, aircraft| aircraft.radar_target.mva})
       status.push(["**VECTORING ALTITUDE**", red])
     end
 
-    if (@aircrafts.all? {|_, aircraft | aircraft.radar_target.mva == false})
-      status.delete(["**VECTORING ALTITUDE**", red])
+    #if (@aircrafts.all? {|_, aircraft | aircraft.radar_target.mva == false})
+    #  status.delete(["**VECTORING ALTITUDE**", red])
+    #end
+
+    if (@aircrafts.any? {|_, aircraft| aircraft.ho_rcv})
+      status.push(["RECEIVED HANDOVER REQUEST", yellow])
     end
+
+    #if (@aircrafts.all? {|_, aircraft | aircraft.ho_rcv == false})
+    #  status.delete(["RECEIVED HANDOVER REQUEST", yellow])
+    #end
+
+    if (@aircrafts.any? {|_, aircraft| aircraft.ho_snt})
+      status.push(["SENT HANDOVER REQUEST", yellow])
+    end
+
+    #if (@aircrafts.all? {|_, aircraft | aircraft.ho_rcv == false})
+    #  status.delete(["SENT HANDOVER REQUEST", yellow])
+    #end
 
     draw_status(args, status)
     draw_background args #Draws background
