@@ -64,13 +64,11 @@ class Autopilot
 
     if @alert
       unless @alert_counter == 0
-        puts @alert_flag
         if @alert_flag
           @aircraft.callsign << @alert_label
           @alert_flag = false
           @alert_counter -= 1
         else
-          puts "estoy en el if"
           for i in 1..@alert_label.length
             @aircraft.callsign.chop!
             @alert_flag = true
@@ -108,11 +106,9 @@ class Autopilot
   def change_altitude
     #get delta
     delta = @target_altitude - @aircraft.altitude 
-    puts delta
     
     #Aircraft is at target altitude
     if delta == 0
-      puts "hola"
       @aircraft.assigned_altitude = nil
       return @aircraft.altitude
     end
