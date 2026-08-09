@@ -43,10 +43,11 @@ class Game
     @s.weather = weather
 
     @s.waypoints = {  
-      "WGR" => Waypoint.new("Whitegrass",      Position.new(177.21,54.59) ),
-      "JOH" => Waypoint.new("Johnstone Point", Position.new(115.73,62.82) ),
-      "MNL" => Waypoint.new("Mineral Creek",   Position.new(123.46,105.48)),
-      "ANC" => Waypoint.new("Anchorage",       Position.new(9.5,129.68)   )
+      "WGR"  => Waypoint.new("Whitegrass",      Position.new(177.21,54.59) ),
+      "JOH"  => Waypoint.new("Johnstone Point", Position.new(115.73,62.82) ),
+      "MNL"  => Waypoint.new("Mineral Creek",   Position.new(123.46,105.48)),
+      "ANC"  => Waypoint.new("Anchorage",       Position.new(9.5,   129.68)),
+      "INT1" => Waypoint.new("Interseccion 1",  Position.new(204.25,32.92) )
     }
 
     @s.add_aircraft_to_lobby("N901AST")
@@ -55,7 +56,7 @@ class Game
     @s.lobby["N901AST"].altitude = 6500.0
     @s.lobby["N901AST"].ias = 95.0
     @s.lobby["N901AST"].position = Position.new(204.58,33.26)
-    @s.lobby["N901AST"].assigned_waypoint = s.waypoints["WGR"]
+    @s.lobby["N901AST"].assigned_waypoint = @s.waypoints["WGR"]
     @s.lobby["N901AST"].radar_target.tag_position = "BL"
     @s.lobby["N901AST"].load_profile_sheet("Helicopter")
     @s.lobby["N901AST"].radar_target.mode_charlie = false
@@ -65,21 +66,22 @@ class Game
     @s.add_aircraft("QXE178")
     @s.aircrafts["QXE178"].type = "DH8D"
     @s.aircrafts["QXE178"].wake_category = "M"
-    @s.aircrafts["QXE178"].altitude = 1500.0
+    @s.aircrafts["QXE178"].altitude = 500.0
     @s.aircrafts["QXE178"].assigned_altitude = 25000.0
     @s.aircrafts["QXE178"].ias = 120.0
     @s.aircrafts["QXE178"].heading = 20
-    @s.aircrafts["QXE178"].position = Position.new(179.73,59.13)
+    @s.aircrafts["QXE178"].position = Position.new(178.38,56.44)
     #@s.aircrafts["QXE178"].assigned_waypoint = s.waypoints["WGR"]
     @s.aircrafts["QXE178"].radar_target.tag_position = "BL"
     @s.aircrafts["QXE178"].load_profile_sheet("Turboprop Multi-Engine")
-    @s.aircrafts["QXE178"].radar_target.in_control = false
 
 
     @s.events = {
       5  => -> { @s.spawn_aicraft(@s.lobby["N901AST"]) },
-      61  => -> { @s.aircrafts["QXE178"].radar_target.in_control = true },
-      62  => -> { @s.aircrafts["QXE178"].receive_handover_request }
+      60  => -> { @s.aircrafts["QXE178"].assigned_heading = 225 },
+      85  => -> { @s.aircrafts["QXE178"].assigned_waypoint = @s.waypoints["WGR"] },
+      300 => -> { @s.aircrafts["QXE178"].assigned_heading  = 180 },
+      301 => -> { @s.aircrafts["QXE178"].assigned_waypoint  = nil }
     }
 
 

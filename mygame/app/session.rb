@@ -99,8 +99,8 @@ class Session
   def step
     @aircrafts.each_value do |aircraft|
       aircraft.autopilot.fly(weather)
-      @time += 1
     end
+    @time += 1
   end
 
 
