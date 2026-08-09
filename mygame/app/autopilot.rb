@@ -116,6 +116,7 @@ class Autopilot
     #Determine climb or descent regime
     if delta > 0 #CLIMB
       rate = interpolator(@aircraft.climb_profile, @aircraft.altitude) / 60
+      puts @aircraft.callsign + " " + rate.to_s
       return @aircraft.altitude + get_control_input(delta, rate)
     end
     if delta < 0 #DESCENT
