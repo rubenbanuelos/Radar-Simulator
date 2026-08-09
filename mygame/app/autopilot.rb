@@ -80,6 +80,14 @@ class Autopilot
       end
     end
 
+    if @aircraft.ho_rcv = true
+      @aircraft.rcv_countdown == 0 ? @aircraft.ho_rcv = false : @aircraft.rcv_countdown -= 1
+    end
+
+    if @aircraft.ho_snt = true
+      @aircraft.snt_countdown == 0 ? @aircraft.ho_snt = false : @aircraft.snt_countdown -= 1
+    end
+
   end
 
   def alert(alert)
