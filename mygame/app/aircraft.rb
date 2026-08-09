@@ -121,6 +121,7 @@ class Aircraft
     
     if type == "Jet"
       climb = [
+        Profile.new(4500, 0),
         Profile.new(4000, 5000),
         Profile.new(3000, 10000),
         Profile.new(2000, 20000),
@@ -176,13 +177,15 @@ class Aircraft
 
     if type == "Helicopter"
       climb = [
+        Profile.new(2500, 0),
         Profile.new(2000, 5000),
         Profile.new(1000, 10000),
         Profile.new(500 , 100000)
       ]
 
       descent = [
-        Profile.new(-200,  1000),
+        Profile.new(-200,  0),
+        Profile.new(-500,  1000),
         Profile.new(-1000, 5000),
         Profile.new(-2000, 10000),
         Profile.new(-2500, 100000)
@@ -215,6 +218,7 @@ class Aircraft
   
     if type == "Turboprop Multi-Engine"
       climb = [
+        Profile.new(2500, 0),
         Profile.new(2000, 5000),
         Profile.new(1500, 10000),
         Profile.new(1000, 20000),
@@ -268,6 +272,7 @@ class Aircraft
 
     if type == "Turboprop Single-Engine"
       climb = [
+        Profile.new(2200, 0),
         Profile.new(1800, 5000),
         Profile.new(1200, 10000),
         Profile.new(800, 20000),
@@ -314,6 +319,7 @@ class Aircraft
 
     if type == "Piston Single-Engine"
       climb = [
+        Profile.new(2000, 0),
         Profile.new(1500, 5000),
         Profile.new(1000, 10000),
         Profile.new(750, 20000),

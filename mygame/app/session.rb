@@ -36,6 +36,8 @@ class Session
   end
 
   def refresh_screen args
+    draw_timer args
+    
     gray = [160,160,160,255]
     red = [255,0,0,255]
     yellow = [255,255,0,255]

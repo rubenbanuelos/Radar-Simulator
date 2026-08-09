@@ -80,8 +80,8 @@ class Game
       5  => -> { @s.spawn_aicraft(@s.lobby["N901AST"]) },
       60  => -> { @s.aircrafts["QXE178"].assigned_heading = 225 },
       85  => -> { @s.aircrafts["QXE178"].assigned_waypoint = @s.waypoints["WGR"] },
-      300 => -> { @s.aircrafts["QXE178"].assigned_heading  = 180 },
-      301 => -> { @s.aircrafts["QXE178"].assigned_waypoint  = nil }
+      145 => -> { @s.aircrafts["QXE178"].assigned_heading  = 180 },
+      146 => -> { @s.aircrafts["QXE178"].assigned_waypoint  = nil }
     }
 
 

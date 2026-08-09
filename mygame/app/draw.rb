@@ -10,10 +10,24 @@ def draw_background args
   }
 end
 
+def draw_timer args
+  #A function to draw a timer on the screen as reference
+  args.outputs.labels << {
+    x:640,
+    y:360,
+    text: (args.state.timer/60).to_i.to_s,
+    size_enum: 0,
+    r: 255,
+    g: 255,
+    b: 255,
+    a: 255
+  }
+end
+
 def draw_status(args, status)
   status.each_with_index do |line, i|
     args.outputs.labels << {
-      x:  970,
+      x:  1000,
       y:  700 - i*25,
       text: line[0],
       size_enum: -3,
