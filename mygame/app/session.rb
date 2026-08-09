@@ -10,11 +10,12 @@ class Session
   def initialize
     @aircrafts = {}
     @waypoints = {}
+    @events    = {}
     @weather = Weather.new
-    @sector = ""
-    @freq = ""
-    @time = Time.new
-    @tz = ""
+    @sector  = ""
+    @freq    = ""
+    @time    = Time.new
+    @tz      = ""
   end
 
   def add_aircraft(callsign)
@@ -102,6 +103,17 @@ class Session
     @aircrafts.each_value do |aircraft|
       aircraft.update_target
     end
+  end
+
+  def do_event(tick)
+    #Convert time to ticks
+
+    events.each do |time, event|
+      #puts time*60
+      #puts tick
+      event.call if tick == time*60
+    end
+
   end
 
 end

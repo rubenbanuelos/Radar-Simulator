@@ -58,14 +58,14 @@ class Game
     @s.aircrafts["N901AST"].assigned_waypoint = s.waypoints["WGR"]
     @s.aircrafts["N901AST"].radar_target.tag_position = "BL"
     @s.aircrafts["N901AST"].load_profile_sheet("Helicopter")
-    @s.aircrafts["N901AST"].assigned_altitude = 10000
 
-    @s.aircrafts["N901AST"].send_handover_request
-    #@s.aircrafts["N901AST"].autopilot.alert(" *HO*")
-    #@s.aircrafts["N901AST"].radar_target.emergency = true
-    #@s.aircrafts["N901AST"].radar_target.mva = true
-    #@s.aircrafts["N901AST"].radar_target.contact_lost = true
-    #@s.aircrafts["N901AST"].radar_target.contact_lost_stage_2 = true
+
+    @s.events = {
+      5 => -> { @s.aircrafts["N901AST"].autopilot.alert(" *IDENT*") }
+    }
+
+
+
 
     @s.begin_session args
 
@@ -77,6 +77,7 @@ class Game
 
     #begin flight update loop
     if args.state.timer % 60 == 0
+      @s.do_event(args.state.timer)
       @s.step
     end
 

@@ -64,15 +64,18 @@ class Autopilot
 
     if @alert
       unless @alert_counter == 0
+        puts @alert_flag
         if @alert_flag
           @aircraft.callsign << @alert_label
           @alert_flag = false
           @alert_counter -= 1
         else
+          puts "estoy en el if"
           for i in 1..@alert_label.length
             @aircraft.callsign.chop!
+            @alert_flag = true
           end
-          @alert_flag = true
+
           @alert_counter -= 1
         end 
       else
