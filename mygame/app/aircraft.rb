@@ -77,6 +77,8 @@ class Aircraft
       if @assigned_altitude < @altitude
         @radar_target.clrd_alt = "↘" + format("%03d",(@assigned_altitude/100))
       end
+    else
+      @radar_target.clrd_alt = ""
     end
   end
 

@@ -97,9 +97,11 @@ class Autopilot
   def change_altitude
     #get delta
     delta = @target_altitude - @aircraft.altitude 
+    puts delta
     
     #Aircraft is at target altitude
     if delta == 0
+      puts "hola"
       @aircraft.assigned_altitude = nil
       return @aircraft.altitude
     end
