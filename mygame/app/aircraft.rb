@@ -202,8 +202,8 @@ class Aircraft
       ]
 
       acceleration_profile = [
-        Profile.new(6.0, 0),
-        Profile.new(3.0, 50000),
+        Profile.new(4.0, 0),
+        Profile.new(2.0, 50000),
         Profile.new(1.5, 20000)
       ]
 
@@ -252,7 +252,7 @@ class Aircraft
       ]
 
       acceleration_profile = [
-        Profile.new(5.0, 0),
+        Profile.new(4.0, 0),
         Profile.new(3.0, 50000),
         Profile.new(1.5, 10000),
         Profile.new(1.0, 20000),
@@ -301,8 +301,8 @@ class Aircraft
       ]
 
       acceleration_profile = [
-        Profile.new(4.0, 0),
-        Profile.new(3.0, 50000),
+        Profile.new(3.0, 0),
+        Profile.new(2.0, 50000),
         Profile.new(1.5, 10000),
         Profile.new(1.0, 20000)
       ]
@@ -348,8 +348,8 @@ class Aircraft
       ]
 
       acceleration_profile = [
-        Profile.new(4.0, 0),
-        Profile.new(3.0, 50000),
+        Profile.new(3.0, 0),
+        Profile.new(2.0, 50000),
         Profile.new(1.5, 10000),
         Profile.new(1.0, 20000)
       ]

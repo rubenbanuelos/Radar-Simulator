@@ -43,11 +43,11 @@ class Game
     @s.weather = weather
 
     @s.waypoints = {  
-      "WGR"  => Waypoint.new("Whitegrass",      Position.new(177.21,54.59) ),
-      "JOH"  => Waypoint.new("Johnstone Point", Position.new(115.73,62.82) ),
-      "MNL"  => Waypoint.new("Mineral Creek",   Position.new(123.46,105.48)),
-      "ANC"  => Waypoint.new("Anchorage",       Position.new(9.5,   129.68)),
-      "INT1" => Waypoint.new("Interseccion 1",  Position.new(204.25,32.92) )
+      "WGR"   => Waypoint.new("Whitegrass",      Position.new(182.71,61.31) ),
+      "JOH"   => Waypoint.new("Johnstone Point", Position.new(115.73,62.82) ),
+      "MNL"   => Waypoint.new("Mineral Creek",   Position.new(123.46,105.48)),
+      "ANC"   => Waypoint.new("Anchorage",       Position.new(9.5,   129.68)),
+      "KATAT" => Waypoint.new("KATAT",           Position.new(204.25,32.92) )
     }
 
     @s.add_aircraft_to_lobby("N901AST")
@@ -70,7 +70,7 @@ class Game
     @s.aircrafts["QXE178"].assigned_altitude = 25000.0
     @s.aircrafts["QXE178"].ias = 120.0
     @s.aircrafts["QXE178"].heading = 20
-    @s.aircrafts["QXE178"].position = Position.new(178.38,56.44)
+    @s.aircrafts["QXE178"].position = Position.new(182.58,62.48)
     #@s.aircrafts["QXE178"].assigned_waypoint = s.waypoints["WGR"]
     @s.aircrafts["QXE178"].radar_target.tag_position = "BL"
     @s.aircrafts["QXE178"].load_profile_sheet("Turboprop Multi-Engine")
@@ -78,9 +78,9 @@ class Game
 
     @s.events = {
       5  => -> { @s.spawn_aicraft(@s.lobby["N901AST"]) },
-      60  => -> { @s.aircrafts["QXE178"].assigned_heading = 225 },
-      85  => -> { @s.aircrafts["QXE178"].assigned_waypoint = @s.waypoints["WGR"] },
-      145 => -> { @s.aircrafts["QXE178"].assigned_heading  = 180 },
+      50  => -> { @s.aircrafts["QXE178"].assigned_heading = 225 },
+      #85  => -> { @s.aircrafts["QXE178"].assigned_waypoint = @s.waypoints["WGR"] },
+      #145 => -> { @s.aircrafts["QXE178"].assigned_heading  = 180 },
       146 => -> { @s.aircrafts["QXE178"].assigned_waypoint  = nil }
     }
 
