@@ -108,6 +108,7 @@ class Aircraft
   def receive_handover_request
     @autopilot.alert(" *HO*")
     @rcv_countdown = 9
+    @radar_target.in_control = true
     @ho_rcv = true
   end
 

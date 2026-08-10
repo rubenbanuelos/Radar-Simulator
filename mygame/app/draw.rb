@@ -15,7 +15,7 @@ def draw_timer args
   args.outputs.labels << {
     x:640,
     y:360,
-    text: (args.state.timer/60).to_i.to_s,
+    text: (args.state.timer/12).to_i.to_s,
     size_enum: 0,
     r: 255,
     g: 255,

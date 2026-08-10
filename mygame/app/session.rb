@@ -31,7 +31,6 @@ class Session
     
     @aircrafts.each_value do |aircraft| #draws aircrafts in initial positions
       aircraft.update_target
-      aircraft.populate_ghosts
     end
   end
 
@@ -118,7 +117,7 @@ class Session
     events.each do |time, event|
       #puts time*60
       #puts tick
-      event.call if tick == time*60
+      event.call if tick == time*12
     end
 
   end
