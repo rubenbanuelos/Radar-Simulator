@@ -78,18 +78,18 @@ class Game
     @s.lobby["N901AST"].load_profile_sheet("Helicopter")
     @s.lobby["N901AST"].radar_target.mode_charlie = false
 
-    @s.add_aircraft_to_lobby("ASA66")
-    @s.lobby["ASA66"].type = "B738"
-    @s.lobby["ASA66"].wake_category = "M"
-    @s.lobby["ASA66"].altitude = 38000.0
-    @s.lobby["ASA66"].ias = 250.0
-    @s.lobby["ASA66"].heading = 290
-    @s.lobby["ASA66"].position = Position.new(211.64, 36.72)
-    @s.lobby["ASA66"].assigned_waypoint = @s.waypoints["JOH"]
-    @s.lobby["ASA66"].radar_target.tag_position = "BR"
-    @s.lobby["ASA66"].load_profile_sheet("Jet")
-    @s.lobby["ASA66"].radar_target.in_control = false
-    
+    @s.add_aircraft_to_lobby("N721SQ")
+    @s.lobby["N721SQ"].type = "B738"
+    @s.lobby["N721SQ"].wake_category = "M"
+    @s.lobby["N721SQ"].altitude = 38000.0
+    @s.lobby["N721SQ"].ias = 250.0
+    @s.lobby["N721SQ"].heading = 290
+    @s.lobby["N721SQ"].position = Position.new(211.64, 36.72)
+    @s.lobby["N721SQ"].assigned_waypoint = @s.waypoints["JOH"]
+    @s.lobby["N721SQ"].radar_target.tag_position = "BR"
+    @s.lobby["N721SQ"].load_profile_sheet("Jet")
+    @s.lobby["N721SQ"].radar_target.in_control = false
+
     @s.add_aircraft_to_lobby("AAL1151")
     @s.lobby["AAL1151"].type = "B752"
     @s.lobby["AAL1151"].wake_category = "H"
@@ -114,6 +114,17 @@ class Game
     @s.lobby["ACA1971"].load_profile_sheet("Jet")
     @s.lobby["ACA1971"].radar_target.in_control = false
 
+    @s.add_aircraft("FDX792")
+    @s.aircrafts["FDX792"].type = "B77L"
+    @s.aircrafts["FDX792"].wake_category = "H"
+    @s.aircrafts["FDX792"].altitude = 37000.0
+    @s.aircrafts["FDX792"].ias = 250.0
+    @s.aircrafts["FDX792"].heading = 60.0
+    @s.aircrafts["FDX792"].position = Position.new(40.48,  26.04)
+        @s.aircrafts["FDX792"].assigned_waypoint = @s.waypoints["JOH"]
+    @s.aircrafts["FDX792"].radar_target.tag_position = "BR"
+    @s.aircrafts["FDX792"].load_profile_sheet("Jet")
+
     @s.add_aircraft("DAL7163")
     @s.aircrafts["DAL7163"].type = "763"
     @s.aircrafts["DAL7163"].wake_category = "H"
@@ -125,6 +136,17 @@ class Game
     @s.aircrafts["DAL7163"].radar_target.tag_position = "BR"
     @s.aircrafts["DAL7163"].load_profile_sheet("Jet")
     @s.aircrafts["DAL7163"].assigned_altitude = 20000
+
+    @s.add_aircraft("ASA66")
+    @s.aircrafts["ASA66"].type = "738"
+    @s.aircrafts["ASA66"].wake_category = "H"
+    @s.aircrafts["ASA66"].altitude = 35000.0
+    @s.aircrafts["ASA66"].ias = 300.0
+    @s.aircrafts["ASA66"].heading = 110.0
+    @s.aircrafts["ASA66"].position = Position.new(175.36, 46.36)
+    @s.aircrafts["ASA66"].assigned_waypoint = @s.waypoints["JOVOM"]
+    @s.aircrafts["ASA66"].radar_target.tag_position = "BR"
+    @s.aircrafts["ASA66"].load_profile_sheet("Jet")
     
     @s.add_aircraft("NRA17")
     @s.aircrafts["NRA17"].type = "DHC6"
@@ -147,7 +169,7 @@ class Game
     @s.aircrafts["QXE178"].ias = 120.0
     @s.aircrafts["QXE178"].heading = 20
     @s.aircrafts["QXE178"].position = Position.new(182.58,62.48)
-    @s.aircrafts["QXE178"].radar_target.tag_position = "TL"
+    @s.aircrafts["QXE178"].radar_target.tag_position = "BR"
     @s.aircrafts["QXE178"].load_profile_sheet("Turboprop Multi-Engine")
 
 
@@ -167,13 +189,16 @@ class Game
       150  => -> { @s.aircrafts["NRA17"].assigned_altitude = 2000 },
       160  => -> { @s.aircrafts["QXE178"].assigned_waypoint = @s.waypoints["JOVOM"] },
       165  => -> { @s.aircrafts["NRA17"].assigned_waypoint = @s.waypoints["ANC"] },
+      175  => -> { @s.aircrafts["ASA66"].send_handover_request },
+      185  => -> { @s.aircrafts["ASA66"].radar_target.in_control = false },
+      215  => -> { @s.aircrafts.delete("ASA66") },
       245  => -> { @s.aircrafts["AAL1151"].assigned_waypoint = @s.waypoints["SNRIS"] },
       260  => -> { @s.aircrafts["NRA17"].assigned_waypoint = nil },
       265  => -> { @s.aircrafts["NRA17"].assigned_heading = 270 },
-      320  => -> { @s.spawn_aicraft(@s.lobby["ASA66"]) },
+      320  => -> { @s.spawn_aicraft(@s.lobby["N721SQ"]) },
       330  => -> { @s.aircrafts["DAL7163"].assigned_altitude = 8000 },
       355  => -> { @s.aircrafts["AAL1151"].receive_handover_request },
-      390  => -> { @s.aircrafts["ASA66"].receive_handover_request },
+      390  => -> { @s.aircrafts["N721SQ"].receive_handover_request },
       400  => -> { @s.aircrafts["AAL1151"].assigned_waypoint = @s.waypoints["JOH"] },
       430  => -> { @s.aircrafts["ACA1971"].assigned_waypoint = @s.waypoints["SNRIS"] },
       470  => -> { @s.aircrafts["ACA1971"].assigned_altitude = 20000 },
@@ -181,7 +206,7 @@ class Game
       510  => -> { @s.aircrafts["QXE178"].radar_target.in_control = false },
       520  => -> { @s.aircrafts["NRA17"].assigned_waypoint = @s.waypoints["5MRWY25"] },
       600  => -> { @s.aircrafts["NRA17"].assigned_altitude = 1000 },
-      680  => -> { @s.aircrafts["NRA17"].assigned_waypoint = @s.waypoints["ANC"] },
+      650  => -> { @s.aircrafts["NRA17"].assigned_waypoint = @s.waypoints["ANC"] },
       835  => -> { @s.aircrafts["ACA1971"].assigned_altitude = 8000 },
       840  => -> { @s.aircrafts["ACA1971"].assigned_speed = 280 }
     }
