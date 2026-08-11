@@ -126,7 +126,7 @@ class Game
     @s.aircrafts["FDX792"].load_profile_sheet("Jet")
 
     @s.add_aircraft("DAL7163")
-    @s.aircrafts["DAL7163"].type = "763"
+    @s.aircrafts["DAL7163"].type = "B763"
     @s.aircrafts["DAL7163"].wake_category = "H"
     @s.aircrafts["DAL7163"].altitude = 34000.0
     @s.aircrafts["DAL7163"].ias = 300.0
@@ -138,8 +138,8 @@ class Game
     @s.aircrafts["DAL7163"].assigned_altitude = 20000
 
     @s.add_aircraft("ASA66")
-    @s.aircrafts["ASA66"].type = "738"
-    @s.aircrafts["ASA66"].wake_category = "H"
+    @s.aircrafts["ASA66"].type = "B738"
+    @s.aircrafts["ASA66"].wake_category = "M"
     @s.aircrafts["ASA66"].altitude = 35000.0
     @s.aircrafts["ASA66"].ias = 300.0
     @s.aircrafts["ASA66"].heading = 110.0
