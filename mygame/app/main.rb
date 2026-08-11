@@ -121,7 +121,7 @@ class Game
     @s.aircrafts["FDX792"].ias = 250.0
     @s.aircrafts["FDX792"].heading = 60.0
     @s.aircrafts["FDX792"].position = Position.new(40.48,  26.04)
-        @s.aircrafts["FDX792"].assigned_waypoint = @s.waypoints["JOH"]
+    @s.aircrafts["FDX792"].assigned_waypoint = @s.waypoints["JOH"]
     @s.aircrafts["FDX792"].radar_target.tag_position = "BR"
     @s.aircrafts["FDX792"].load_profile_sheet("Jet")
 
