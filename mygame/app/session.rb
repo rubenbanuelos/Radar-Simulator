@@ -117,7 +117,7 @@ class Session
     events.each do |time, event|
       #puts time*60
       #puts tick
-      event.call if tick == time*12
+      event.call if tick == time*60
     end
 
   end

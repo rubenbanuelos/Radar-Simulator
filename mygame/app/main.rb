@@ -223,12 +223,12 @@ class Game
     @s.refresh_screen args
 
     #begin flight update loop
-    if args.state.timer % 12 == 0
+    if args.state.timer % 60 == 0
       @s.do_event(args.state.timer)
       @s.step
     end
 
-    if args.state.timer % 60 == 0
+    if args.state.timer % 300 == 0
       @s.update
     end
 
