@@ -89,7 +89,7 @@ class Session
       
       draw_target(args, aircraft.radar_target) #draw targets and ghosts
       
-      if aircraft.radar_target.mode_charlie
+      if aircraft.radar_target.squawk_ifr
         draw_tag(args, aircraft.radar_target) #draw tags for aircraft in control
       end
     end

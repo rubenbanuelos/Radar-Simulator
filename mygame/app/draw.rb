@@ -56,7 +56,23 @@ def draw_target(args, target)
       b: target.target_color[2],
       a: target.target_color[3]
     }
+
+    unless target.squawk_ifr
+      args.outputs.labels << {
+        x: target.loc.x + 10,
+        y: target.loc.y - 8,
+        text: target.alt + " " + target.gspd,
+        size_enum: -7,
+        alignment_enum: 0,
+        r: target.target_color[0],
+        g: target.target_color[1],
+        b: target.target_color[2],
+        a: target.target_color[3],
+        font: "/mygame/fonts/FreeMonoBold.ttf"
+      }
+    end
   end
+
 
   #Draw box around target
   

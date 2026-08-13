@@ -6,7 +6,7 @@ class RadarTarget
   attr_accessor :target_color, :ghost_color
   #flags
   attr_accessor :emergency, :in_control, :mva
-  attr_reader :mode_charlie
+  attr_reader :squawk_ifr
   
   attr_accessor :contact_lost, :contact_lost_stage_2
   
@@ -25,7 +25,7 @@ class RadarTarget
     @loc = Position.new(0,0)
 
     @emergency = false
-    @mode_charlie = true
+    @squawk_ifr = true
     @in_control = true
     @mva = false
 
@@ -65,8 +65,8 @@ class RadarTarget
 
   end
 
-  def mode_charlie=(val)
-    @mode_charlie = val
+  def squawk_ifr=(val)
+    @squawk_ifr = val
     if val == true
       @target_color = [255,255,0,255]
     else
