@@ -66,17 +66,17 @@ class Game
       "5MRWY25" => Waypoint.new("5MRWY25",          Position.new(5.04,  108.00) )
     }
 
-    @s.add_aircraft_to_lobby("N901AST")
-    @s.lobby["N901AST"].type = "B06"
-    @s.lobby["N901AST"].wake_category = "L"
-    @s.lobby["N901AST"].altitude = 6500.0
-    @s.lobby["N901AST"].ias = 95.0
-    @s.lobby["N901AST"].heading = 290
-    @s.lobby["N901AST"].position = Position.new(211.98, 57.45)
-    @s.lobby["N901AST"].assigned_waypoint = @s.waypoints["WGR"]
-    @s.lobby["N901AST"].radar_target.tag_position = "TL"
-    @s.lobby["N901AST"].load_profile_sheet("Helicopter")
-    @s.lobby["N901AST"].radar_target.mode_charlie = false
+    @s.add_aircraft_to_lobby("N91AST")
+    @s.lobby["N91AST"].type = "B06"
+    @s.lobby["N91AST"].wake_category = "L"
+    @s.lobby["N91AST"].altitude = 6500.0
+    @s.lobby["N91AST"].ias = 95.0
+    @s.lobby["N91AST"].heading = 290
+    @s.lobby["N91AST"].position = Position.new(211.98, 57.45)
+    @s.lobby["N91AST"].assigned_waypoint = @s.waypoints["WGR"]
+    @s.lobby["N91AST"].radar_target.tag_position = "TL"
+    @s.lobby["N91AST"].load_profile_sheet("Helicopter")
+    @s.lobby["N91AST"].radar_target.mode_charlie = false
 
     @s.add_aircraft_to_lobby("N721SQ")
     @s.lobby["N721SQ"].type = "B738"
@@ -174,12 +174,12 @@ class Game
 
 
     @s.events = {
-      5    => -> { @s.spawn_aicraft(@s.lobby["N901AST"]) },
-      10   => -> { @s.aircrafts["N901AST"].assigned_waypoint = @s.waypoints["WGR"] },
+      5    => -> { @s.spawn_aicraft(@s.lobby["N91AST"]) },
+      10   => -> { @s.aircrafts["N91AST"].assigned_waypoint = @s.waypoints["WGR"] },
       50   => -> { @s.aircrafts["QXE178"].assigned_heading = 225 },
       60   => -> { @s.spawn_aicraft(@s.lobby["ACA1971"]) },
       65   => -> { @s.aircrafts["QXE178"].assigned_waypoint = @s.waypoints["WGR"] },
-      88   => -> { @s.aircrafts["N901AST"].radar_target.mode_charlie = true },
+      88   => -> { @s.aircrafts["N91AST"].radar_target.mode_charlie = true },
       90   => -> { @s.aircrafts["ACA1971"].receive_handover_request },
       100  => -> { @s.spawn_aicraft(@s.lobby["AAL1151"]) },
       125  => -> { @s.aircrafts["NRA17"].send_handover_request },
@@ -193,65 +193,65 @@ class Game
       185  => -> { @s.aircrafts["ASA66"].radar_target.in_control = false },
       215  => -> { @s.aircrafts.delete("ASA66") },
       230  => -> { @s.aircrafts["FDX792"].assigned_altitude = 39000 },
-      236  => -> { @s.aircrafts["N901AST"].assigned_waypoint = nil },
-      237  => -> { @s.aircrafts["N901AST"].ias = 88},
-      238  => -> { @s.aircrafts["N901AST"].altitude = 6300},
-      239  => -> { @s.aircrafts["N901AST"].heading = 250},
-      242  => -> { @s.aircrafts["N901AST"].ias = 95},
-      243  => -> { @s.aircrafts["N901AST"].altitude = 6100},
-      244  => -> { @s.aircrafts["N901AST"].heading = 235},
+      236  => -> { @s.aircrafts["N91AST"].assigned_waypoint = nil },
+      237  => -> { @s.aircrafts["N91AST"].ias = 88},
+      238  => -> { @s.aircrafts["N91AST"].altitude = 6300},
+      239  => -> { @s.aircrafts["N91AST"].heading = 250},
+      242  => -> { @s.aircrafts["N91AST"].ias = 95},
+      243  => -> { @s.aircrafts["N91AST"].altitude = 6100},
+      244  => -> { @s.aircrafts["N91AST"].heading = 235},
       245  => -> { @s.aircrafts["AAL1151"].assigned_waypoint = @s.waypoints["SNRIS"] },
-      247  => -> { @s.aircrafts["N901AST"].ias = 106},
-      248  => -> { @s.aircrafts["N901AST"].altitude = 5900},
-      249  => -> { @s.aircrafts["N901AST"].heading = 220},
-      252  => -> { @s.aircrafts["N901AST"].ias = 116},
-      253  => -> { @s.aircrafts["N901AST"].altitude = 5500},
-      254  => -> { @s.aircrafts["N901AST"].heading = 180},
-      257  => -> { @s.aircrafts["N901AST"].ias = 116},
-      258  => -> { @s.aircrafts["N901AST"].altitude = 5400},
+      247  => -> { @s.aircrafts["N91AST"].ias = 106},
+      248  => -> { @s.aircrafts["N91AST"].altitude = 5900},
+      249  => -> { @s.aircrafts["N91AST"].heading = 220},
+      252  => -> { @s.aircrafts["N91AST"].ias = 116},
+      253  => -> { @s.aircrafts["N91AST"].altitude = 5500},
+      254  => -> { @s.aircrafts["N91AST"].heading = 180},
+      257  => -> { @s.aircrafts["N91AST"].ias = 116},
+      258  => -> { @s.aircrafts["N91AST"].altitude = 5400},
       260  => -> { @s.aircrafts["NRA17"].assigned_waypoint = nil },
-      252  => -> { @s.aircrafts["N901AST"].ias = 110},
-      253  => -> { @s.aircrafts["N901AST"].altitude = 5500},
-      254  => -> { @s.aircrafts["N901AST"].heading = 180},
-      257  => -> { @s.aircrafts["N901AST"].ias = 100},
-      258  => -> { @s.aircrafts["N901AST"].altitude = 5700},
-      259  => -> { @s.aircrafts["N901AST"].heading = 200},
-      262  => -> { @s.aircrafts["N901AST"].ias = 90},
-      263  => -> { @s.aircrafts["N901AST"].altitude = 5800},
-      264  => -> { @s.aircrafts["N901AST"].heading = 220},
+      252  => -> { @s.aircrafts["N91AST"].ias = 110},
+      253  => -> { @s.aircrafts["N91AST"].altitude = 5500},
+      254  => -> { @s.aircrafts["N91AST"].heading = 180},
+      257  => -> { @s.aircrafts["N91AST"].ias = 100},
+      258  => -> { @s.aircrafts["N91AST"].altitude = 5700},
+      259  => -> { @s.aircrafts["N91AST"].heading = 200},
+      262  => -> { @s.aircrafts["N91AST"].ias = 90},
+      263  => -> { @s.aircrafts["N91AST"].altitude = 5800},
+      264  => -> { @s.aircrafts["N91AST"].heading = 220},
       265  => -> { @s.aircrafts["NRA17"].assigned_heading = 270 },
-      267  => -> { @s.aircrafts["N901AST"].ias = 85},
-      268  => -> { @s.aircrafts["N901AST"].altitude = 5900},
-      269  => -> { @s.aircrafts["N901AST"].heading = 250},
-      272  => -> { @s.aircrafts["N901AST"].ias = 90},
-      273  => -> { @s.aircrafts["N901AST"].altitude = 6000},
-      274  => -> { @s.aircrafts["N901AST"].heading = 200},
-      277  => -> { @s.aircrafts["N901AST"].ias = 100},
-      278  => -> { @s.aircrafts["N901AST"].altitude = 6100},
-      282  => -> { @s.aircrafts["N901AST"].heading = 220},
-      283  => -> { @s.aircrafts["N901AST"].ias = 105},
-      284  => -> { @s.aircrafts["N901AST"].altitude = 5900},
-      287  => -> { @s.aircrafts["N901AST"].radar_target.emergency = true},
-      288  => -> { @s.aircrafts["N901AST"].heading = 200},
-      289  => -> { @s.aircrafts["N901AST"].ias = 100},
-      292  => -> { @s.aircrafts["N901AST"].altitude = 5700},
-      293  => -> { @s.aircrafts["N901AST"].heading = 180},
-      294  => -> { @s.aircrafts["N901AST"].ias = 106},
-      297  => -> { @s.aircrafts["N901AST"].altitude = 5500},
-      298  => -> { @s.aircrafts["N901AST"].heading = 160},
-      299  => -> { @s.aircrafts["N901AST"].ias = 112},
-      302  => -> { @s.aircrafts["N901AST"].altitude = 5300},
-      303  => -> { @s.aircrafts["N901AST"].heading = 150},
-      304  => -> { @s.aircrafts["N901AST"].ias = 115},
-      307  => -> { @s.aircrafts["N901AST"].altitude = 5200},
-      308  => -> { @s.aircrafts["N901AST"].heading = 180},
-      309  => -> { @s.aircrafts["N901AST"].ias = 110},
-      312  => -> { @s.aircrafts["N901AST"].altitude = 5100},
-      313  => -> { @s.aircrafts["N901AST"].heading = 200},
-      314  => -> { @s.aircrafts["N901AST"].ias = 106},
+      267  => -> { @s.aircrafts["N91AST"].ias = 85},
+      268  => -> { @s.aircrafts["N91AST"].altitude = 5900},
+      269  => -> { @s.aircrafts["N91AST"].heading = 250},
+      272  => -> { @s.aircrafts["N91AST"].ias = 90},
+      273  => -> { @s.aircrafts["N91AST"].altitude = 6000},
+      274  => -> { @s.aircrafts["N91AST"].heading = 200},
+      277  => -> { @s.aircrafts["N91AST"].ias = 100},
+      278  => -> { @s.aircrafts["N91AST"].altitude = 6100},
+      282  => -> { @s.aircrafts["N91AST"].heading = 220},
+      283  => -> { @s.aircrafts["N91AST"].ias = 105},
+      284  => -> { @s.aircrafts["N91AST"].altitude = 5900},
+      287  => -> { @s.aircrafts["N91AST"].radar_target.emergency = true},
+      288  => -> { @s.aircrafts["N91AST"].heading = 200},
+      289  => -> { @s.aircrafts["N91AST"].ias = 100},
+      292  => -> { @s.aircrafts["N91AST"].altitude = 5700},
+      293  => -> { @s.aircrafts["N91AST"].heading = 180},
+      294  => -> { @s.aircrafts["N91AST"].ias = 106},
+      297  => -> { @s.aircrafts["N91AST"].altitude = 5500},
+      298  => -> { @s.aircrafts["N91AST"].heading = 160},
+      299  => -> { @s.aircrafts["N91AST"].ias = 112},
+      302  => -> { @s.aircrafts["N91AST"].altitude = 5300},
+      303  => -> { @s.aircrafts["N91AST"].heading = 150},
+      304  => -> { @s.aircrafts["N91AST"].ias = 115},
+      307  => -> { @s.aircrafts["N91AST"].altitude = 5200},
+      308  => -> { @s.aircrafts["N91AST"].heading = 180},
+      309  => -> { @s.aircrafts["N91AST"].ias = 110},
+      312  => -> { @s.aircrafts["N91AST"].altitude = 5100},
+      313  => -> { @s.aircrafts["N91AST"].heading = 200},
+      314  => -> { @s.aircrafts["N91AST"].ias = 106},
       320  => -> { @s.spawn_aicraft(@s.lobby["N721SQ"]) },
       330  => -> { @s.aircrafts["DAL7163"].assigned_altitude = 8000 },
-      347  => -> { @s.aircrafts["N901AST"].radar_target.emergency = true},
+      347  => -> { @s.aircrafts["N91AST"].radar_target.emergency = true},
       355  => -> { @s.aircrafts["AAL1151"].receive_handover_request },
       390  => -> { @s.aircrafts["N721SQ"].receive_handover_request },
       400  => -> { @s.aircrafts["AAL1151"].assigned_waypoint = @s.waypoints["JOH"] },
