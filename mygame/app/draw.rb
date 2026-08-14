@@ -22,6 +22,7 @@ def draw_timer args
     b: 255,
     a: 255
   }
+  
 end
 
 def draw_status(args, status)
@@ -61,7 +62,19 @@ def draw_target(args, target)
       args.outputs.labels << {
         x: target.loc.x + 10,
         y: target.loc.y - 8,
-        text: target.alt + " " + target.gspd,
+        text: target.alt,
+        size_enum: -7,
+        alignment_enum: 0,
+        r: target.target_color[0],
+        g: target.target_color[1],
+        b: target.target_color[2],
+        a: target.target_color[3],
+        font: "/mygame/fonts/FreeMonoBold.ttf"
+      }
+      args.outputs.labels << {
+        x: target.loc.x + 10,
+        y: target.loc.y - 18,
+        text: target.gspd,
         size_enum: -7,
         alignment_enum: 0,
         r: target.target_color[0],
@@ -107,7 +120,7 @@ end
 def draw_tag(args, target)
   tag_params = {
     "BL" => [-3.0,-3.0, -18.0, -18.0, -43.0, -23.0],
-    "TL" => [-3.0, 9.0, -18.0,  24.0, -43.0,  44.0],
+    "TL" => [-3.0, 6.0, -18.0,  21.0, -43.0,  44.0],
     "BR" => [6.0, -3.0,  21.0, -18.0,  26.0,  -23.0],
     "TR" => [6.0, 6.0,  21.0,  21.0, 26.0,  44.0]
   }

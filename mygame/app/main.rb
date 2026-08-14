@@ -11,12 +11,10 @@ class Game
 
      @s = Session.new
 
-     @s.sector = "PAZA    -   ANCHORAGE CTR"
+     @s.sector = "PAZA  -  ANCHORAGE CENTER"
      @s.freq   = "SECTOR 13     130.200 MHZ"
      @s.time = Time.new(2009,11,13,16,31,19)
      @s.tz = "AST"
-
-     puts "Inicializando"
 
     winds = [
       Profile.new(Wind.new(5.0, 70.0), 0),
@@ -43,27 +41,29 @@ class Game
     @s.weather = weather
 
     @s.waypoints = {  
-      "WGR"     => Waypoint.new("Whitegrass",       Position.new(182.71, 61.31) ),
-      "JOH"     => Waypoint.new("Johnstone Point",  Position.new(115.73, 62.82) ),
-      "MNL"     => Waypoint.new("Mineral Creek",    Position.new(123.46, 105.48)),
-      "ANC"     => Waypoint.new("Anchorage",        Position.new(9.5,   109.68) ),
-      "MDO"     => Waypoint.new("Middleton Island", Position.new(121.44,  1.84) ),
-      "JOVOM"   => Waypoint.new("JOVOM",            Position.new(207.61, 37.79) ),
-      "FORAT"   => Waypoint.new("FORAT",            Position.new(191.65, 42.16) ),
-      "OXUGE"   => Waypoint.new("OXUGE",            Position.new(190.81, 43.26) ),
-      "KATAT"   => Waypoint.new("KATAT",            Position.new(175.36, 46.36) ),
-      "MODDS"   => Waypoint.new("MODDS",            Position.new(93.56,  23.52) ),
-      "DEALS"   => Waypoint.new("DEALS",            Position.new(89.53,  16.96) ),
-      "WUXAN"   => Waypoint.new("WUXAN",            Position.new(40.48,  26.04) ),
-      "SEWAR"   => Waypoint.new("SEWAR",            Position.new(20.32,  49.55) ),
-      "MURYY"   => Waypoint.new("MURYY",            Position.new(35.61,  68.20) ),
-      "HATUL"   => Waypoint.new("HATUL",            Position.new(13.77,  87.01) ),
-      "HOPER"   => Waypoint.new("HOPER",            Position.new(22.00,  89.53) ),
-      "SNRIS"   => Waypoint.new("SNRIS",            Position.new(28.22,  94.73) ),
-      "5MRWY02" => Waypoint.new("5MRWY02",          Position.new(183.76, 66.01) ),
-      "5MRWY20" => Waypoint.new("5MRWY20",          Position.new(180.40, 56.44) ),
-      "5MRWY07" => Waypoint.new("5MRWY07",          Position.new(14.46, 111.53) ),
-      "5MRWY25" => Waypoint.new("5MRWY25",          Position.new(5.04,  108.00) )
+      "WGR"     => Waypoint.new("Whitegrass",            Position.new(182.71, 61.31) ),
+      "JOH"     => Waypoint.new("Johnstone Point",       Position.new(115.73, 62.82) ),
+      "MNL"     => Waypoint.new("Mineral Creek",         Position.new(123.46, 105.48)),
+      "ANC"     => Waypoint.new("Anchorage",             Position.new(9.5,   109.68) ),
+      "MDO"     => Waypoint.new("Middleton Island",      Position.new(121.44,  1.84) ),
+      "JOVOM"   => Waypoint.new("JOVOM",                 Position.new(207.61, 37.79) ),
+      "FORAT"   => Waypoint.new("FORAT",                 Position.new(191.65, 42.16) ),
+      "OXUGE"   => Waypoint.new("OXUGE",                 Position.new(190.81, 43.26) ),
+      "KATAT"   => Waypoint.new("KATAT",                 Position.new(175.36, 46.36) ),
+      "MODDS"   => Waypoint.new("MODDS",                 Position.new(93.56,  23.52) ),
+      "DEALS"   => Waypoint.new("DEALS",                 Position.new(89.53,  16.96) ),
+      "WUXAN"   => Waypoint.new("WUXAN",                 Position.new(40.48,  26.04) ),
+      "SEWAR"   => Waypoint.new("SEWAR",                 Position.new(20.32,  49.55) ),
+      "MURYY"   => Waypoint.new("MURYY",                 Position.new(35.61,  68.20) ),
+      "HATUL"   => Waypoint.new("HATUL",                 Position.new(13.77,  87.01) ),
+      "HOPER"   => Waypoint.new("HOPER",                 Position.new(22.00,  89.53) ),
+      "SNRIS"   => Waypoint.new("SNRIS",                 Position.new(28.22,  94.73) ),
+      "5MRWY02" => Waypoint.new("5MRWY02",               Position.new(183.76, 66.01) ),
+      "5MRWY20" => Waypoint.new("5MRWY20",               Position.new(180.40, 56.44) ),
+      "5MRWY07" => Waypoint.new("5MRWY07",               Position.new(14.46, 111.53) ),
+      "5MRWY25" => Waypoint.new("5MRWY25",               Position.new(5.04,  108.00) ),
+      "PAKA"    => Waypoint.new("Tatitlek",              Position.new(113.71, 88.35) ),
+      "PAVD"    => Waypoint.new("Valdez Pioneer Field",  Position.new(125.64, 105.48))
     }
 
     @s.add_aircraft_to_lobby("N91AST")
@@ -79,8 +79,8 @@ class Game
     @s.lobby["N91AST"].radar_target.squawk_ifr = false
 
     @s.add_aircraft_to_lobby("N721SQ")
-    @s.lobby["N721SQ"].type = "B738"
-    @s.lobby["N721SQ"].wake_category = "M"
+    @s.lobby["N721SQ"].type = "C550"
+    @s.lobby["N721SQ"].wake_category = "L"
     @s.lobby["N721SQ"].altitude = 38000.0
     @s.lobby["N721SQ"].ias = 250.0
     @s.lobby["N721SQ"].heading = 290
@@ -124,6 +124,50 @@ class Game
     @s.aircrafts["FDX792"].assigned_waypoint = @s.waypoints["JOH"]
     @s.aircrafts["FDX792"].radar_target.tag_position = "BR"
     @s.aircrafts["FDX792"].load_profile_sheet("Jet")
+
+    @s.add_aircraft("N39882")
+    @s.aircrafts["N39882"].type = "C172"
+    @s.aircrafts["N39882"].wake_category = "L"
+    @s.aircrafts["N39882"].altitude = 3500.0
+    @s.aircrafts["N39882"].ias = 80.0
+    @s.aircrafts["N39882"].heading = 110.0
+    @s.aircrafts["N39882"].position = Position.new(133.03,  79.28)
+    @s.aircrafts["N39882"].assigned_waypoint = @s.waypoints["WGR"]
+    @s.aircrafts["N39882"].radar_target.tag_position = "BR"
+    @s.aircrafts["N39882"].load_profile_sheet("Piston Single-Engine")
+
+    @s.add_aircraft("XB-DMO")
+    @s.aircrafts["XB-DMO"].type = "C172"
+    @s.aircrafts["XB-DMO"].wake_category = "L"
+    @s.aircrafts["XB-DMO"].altitude = 3500.0
+    @s.aircrafts["XB-DMO"].ias = 80.0
+    @s.aircrafts["XB-DMO"].heading = 300.0
+    @s.aircrafts["XB-DMO"].position = Position.new(148.31,  28.39)
+    @s.aircrafts["XB-DMO"].assigned_waypoint = @s.waypoints["WGR"]
+    @s.aircrafts["XB-DMO"].radar_target.squawk_ifr = false
+    @s.aircrafts["XB-DMO"].load_profile_sheet("Piston Single-Engine")
+
+    @s.add_aircraft("XB-DMA")
+    @s.aircrafts["XB-DMA"].type = "C172"
+    @s.aircrafts["XB-DMA"].wake_category = "L"
+    @s.aircrafts["XB-DMA"].altitude = 4500.0
+    @s.aircrafts["XB-DMA"].ias = 80.0
+    @s.aircrafts["XB-DMA"].heading = 300.0
+    @s.aircrafts["XB-DMA"].position = Position.new(164.03,  75.25)
+    @s.aircrafts["XB-DMA"].assigned_waypoint = @s.waypoints["PAVD"]
+    @s.aircrafts["XB-DMA"].radar_target.squawk_ifr = false
+    @s.aircrafts["XB-DMA"].load_profile_sheet("Piston Single-Engine")
+
+    @s.add_aircraft("XB-OMA")
+    @s.aircrafts["XB-DMA"].type = "C172"
+    @s.aircrafts["XB-DMA"].wake_category = "L"
+    @s.aircrafts["XB-DMA"].altitude = 4500.0
+    @s.aircrafts["XB-DMA"].ias = 80.0
+    @s.aircrafts["XB-DMA"].heading = 90.0
+    @s.aircrafts["XB-DMA"].position = Position.new(101.79,  83.48)
+    @s.aircrafts["XB-DMA"].assigned_waypoint = @s.waypoints["ANC"]
+    @s.aircrafts["XB-DMA"].radar_target.squawk_ifr = false
+    @s.aircrafts["XB-DMA"].load_profile_sheet("Piston Single-Engine")
 
     @s.add_aircraft("DAL7163")
     @s.aircrafts["DAL7163"].type = "B763"
@@ -177,8 +221,8 @@ class Game
       5    => -> { @s.spawn_aicraft(@s.lobby["N91AST"]) },
       10   => -> { @s.aircrafts["N91AST"].assigned_waypoint = @s.waypoints["WGR"] },
       50   => -> { @s.aircrafts["QXE178"].assigned_heading = 225 },
-      60   => -> { @s.spawn_aicraft(@s.lobby["ACA1971"]) },
-      65   => -> { @s.aircrafts["QXE178"].assigned_waypoint = @s.waypoints["WGR"] },
+      64   => -> { @s.aircrafts["QXE178"].assigned_waypoint = @s.waypoints["WGR"] },
+      65   => -> { @s.spawn_aicraft(@s.lobby["ACA1971"]) },
       88   => -> { @s.aircrafts["N91AST"].radar_target.squawk_ifr = true },
       89   => -> { @s.aircrafts["N91AST"].autopilot.alert(" *IDENT*")},
       90   => -> { @s.aircrafts["ACA1971"].receive_handover_request },
@@ -326,8 +370,8 @@ class Game
       414  => -> { @s.aircrafts["N91AST"].ias = 55},
       420  => -> { @s.aircrafts["N91AST"].radar_target.contact_lost_stage_2 = true},
       426  => -> { @s.aircrafts.delete("N91AST") },
-      430  => -> { @s.aircrafts["ACA1971"].assigned_waypoint = @s.waypoints["SNRIS"] },
-      470  => -> { @s.aircrafts["ACA1971"].assigned_altitude = 20000 },
+      435  => -> { @s.aircrafts["ACA1971"].assigned_waypoint = @s.waypoints["SNRIS"] },
+      475  => -> { @s.aircrafts["ACA1971"].assigned_altitude = 20000 },
       505  => -> { @s.aircrafts["QXE178"].send_handover_request },
       510  => -> { @s.aircrafts["QXE178"].radar_target.in_control = false },
       520  => -> { @s.aircrafts["NRA17"].assigned_waypoint = @s.waypoints["5MRWY25"] },
