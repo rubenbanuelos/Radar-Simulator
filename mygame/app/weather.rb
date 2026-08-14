@@ -44,12 +44,15 @@ def interpolate_wind (weather, altitude)
 
 
   if lower_altitude == higher_altitude
-    return lower_wind
+    result = Wind.new(0,0)
+    result.speed = lower_wind.speed + rand*4-2
+    result.heading = lower_wind.heading
+    return result
     
   else
     f = (altitude-lower_altitude).to_f / (higher_altitude - lower_altitude).to_f
-    iw_x = lw_x.to_f + f*(hw_x-lw_x).to_f
-    iw_y = lw_y.to_f + f*(hw_y-lw_y).to_f
+    iw_x = lw_x.to_f + f*(hw_x-lw_x).to_f + rand*2.8-1.4
+    iw_y = lw_y.to_f + f*(hw_y-lw_y).to_f + rand*2.8-1.4
   end
 
 

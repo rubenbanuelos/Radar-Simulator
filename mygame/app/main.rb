@@ -114,6 +114,17 @@ class Game
     @s.lobby["ACA1971"].load_profile_sheet("Jet")
     @s.lobby["ACA1971"].radar_target.in_control = false
 
+    @s.add_aircraft_to_lobby("XB-OPA")
+    @s.lobby["XB-OPA"].type = "C172"
+    @s.lobby["XB-OPA"].wake_category = "L"
+    @s.lobby["XB-OPA"].altitude = 500.0
+    @s.lobby["XB-OPA"].ias = 65.0
+    @s.lobby["XB-OPA"].heading = 60.0
+    @s.lobby["XB-OPA"].position = Position.new(115.39,  89.19)
+    @s.lobby["XB-OPA"].radar_target.squawk_ifr = false
+    @s.lobby["XB-OPA"].load_profile_sheet("Piston Single-Engine")
+    @s.lobby["XB-OPA"].assigned_altitude = 6500
+
     @s.add_aircraft("FDX792")
     @s.aircrafts["FDX792"].type = "B77L"
     @s.aircrafts["FDX792"].wake_category = "H"
@@ -159,15 +170,15 @@ class Game
     @s.aircrafts["XB-DMA"].load_profile_sheet("Piston Single-Engine")
 
     @s.add_aircraft("XB-OMA")
-    @s.aircrafts["XB-DMA"].type = "C172"
-    @s.aircrafts["XB-DMA"].wake_category = "L"
-    @s.aircrafts["XB-DMA"].altitude = 4500.0
-    @s.aircrafts["XB-DMA"].ias = 80.0
-    @s.aircrafts["XB-DMA"].heading = 90.0
-    @s.aircrafts["XB-DMA"].position = Position.new(101.79,  83.48)
-    @s.aircrafts["XB-DMA"].assigned_waypoint = @s.waypoints["ANC"]
-    @s.aircrafts["XB-DMA"].radar_target.squawk_ifr = false
-    @s.aircrafts["XB-DMA"].load_profile_sheet("Piston Single-Engine")
+    @s.aircrafts["XB-OMA"].type = "C172"
+    @s.aircrafts["XB-OMA"].wake_category = "L"
+    @s.aircrafts["XB-OMA"].altitude = 4500.0
+    @s.aircrafts["XB-OMA"].ias = 80.0
+    @s.aircrafts["XB-OMA"].heading = 90.0
+    @s.aircrafts["XB-OMA"].position = Position.new(101.79,  83.48)
+    @s.aircrafts["XB-OMA"].assigned_waypoint = @s.waypoints["ANC"]
+    @s.aircrafts["XB-OMA"].radar_target.squawk_ifr = false
+    @s.aircrafts["XB-OMA"].load_profile_sheet("Piston Single-Engine")
 
     @s.add_aircraft("DAL7163")
     @s.aircrafts["DAL7163"].type = "B763"
@@ -321,6 +332,7 @@ class Game
       347  => -> { @s.aircrafts["N91AST"].altitude = 4500},
       348  => -> { @s.aircrafts["N91AST"].heading = 230},
       349  => -> { @s.aircrafts["N91AST"].ias = 99},
+      350  => -> { @s.spawn_aicraft(@s.lobby["XB-OPA"]) },
       352  => -> { @s.aircrafts["N91AST"].altitude = 4400},
       353  => -> { @s.aircrafts["N91AST"].heading = 230},
       354  => -> { @s.aircrafts["N91AST"].ias = 98},
@@ -336,6 +348,7 @@ class Game
       367  => -> { @s.aircrafts["N91AST"].altitude = 4100},
       368  => -> { @s.aircrafts["N91AST"].heading = 240},
       369  => -> { @s.aircrafts["N91AST"].ias = 98},
+      370  => -> { @s.aircrafts["XB-OPA"].assigned_waypoint = @s.waypoints["ANC"]},
       372  => -> { @s.aircrafts["N91AST"].altitude = 4000},
       373  => -> { @s.aircrafts["N91AST"].heading = 260},
       374  => -> { @s.aircrafts["N91AST"].ias = 96},
