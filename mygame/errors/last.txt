@@ -1,24 +1,22 @@
 * EXCEPTION:
-* ERROR: :** method missing on ~Class~.
+* ERROR: :type= method missing on ~TrueClass~.
 
-#+begin_src ~Class#inspect~
-NIL
-#+end_src ~Class#inspect~
+#+begin_src ~TrueClass#inspect~
+true
+#+end_src ~TrueClass#inspect~
 
 
 
 The method named
-  :**
+  :type=
 with args
-  [2]
-doesn't exist on [NilClass].
+  ["GENERIC"]
+doesn't exist on [TrueClass, ValueType].
 
 (suggestions above)
 ** Backtrace:
-*** app/vectors.rb:6:in get_polar_coordinates
-*** app/weather.rb:56:in interpolate_wind
-*** app/autopilot.rb:30:in fly
-*** app/session.rb:102:in step
-*** app/session.rb:101:in step
-*** app/main.rb:411:in tick
-*** app/main.rb:424:in tick
+*** app/aircraft.rb:57:in update_target
+*** app/session.rb:34:in begin_session
+*** app/session.rb:33:in begin_session
+*** app/main.rb:61:in initialize
+*** app/main.rb:84:in tick

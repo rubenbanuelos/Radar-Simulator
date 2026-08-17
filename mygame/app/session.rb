@@ -5,18 +5,19 @@ require_relative 'draw'
 
 class Session
   #Class containing a radar session
-  attr_accessor :aircrafts, :waypoints, :weather, :sector, :time, :tz, :events,:freq, :lobby
+  attr_accessor :aircrafts, :waypoints, :weather, :sector, :time, :tz, :events,:freq, :lobby, :time_diff
   
   def initialize
     @aircrafts = {}
     @waypoints = {}
     @events    = {}
     @lobby     = {}
-    @weather = Weather.new
-    @sector  = ""
-    @freq    = ""
-    @time    = Time.new
-    @tz      = ""
+    @weather   = Weather.new
+    @sector    = ""
+    @freq      = ""
+    @time      = Time.new
+    @tz        = ""
+    @time_diff = 0
   end
 
   def add_aircraft(callsign)
@@ -46,7 +47,7 @@ class Session
     status.push([@freq,  gray])
     
     t_local = format("%02d", @time.hour ).to_s + ":" + format("%02d", @time.min) + ":" + format("%02d", @time.sec)
-    t_utc = format("%02d", (@time.hour + 8) % 24).to_s + ":" + format("%02d", @time.min) + ":" + format("%02d", @time.sec)
+    t_utc = format("%02d", (@time.hour - time_diff) % 24).to_s + ":" + format("%02d", @time.min) + ":" + format("%02d", @time.sec)
     
     status.push([t_local + " " + @tz + " " + t_utc + " UTC", gray])
 

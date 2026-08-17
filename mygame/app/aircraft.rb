@@ -51,12 +51,6 @@ class Aircraft
 
 
     @radar_target = RadarTarget.new(@callsign)
-
-    @ho_rcv = false
-    @ho_snt = false
-
-    @rcv_countdown = 0
-    @snt_countdown = 0
   end
 
   def update_target

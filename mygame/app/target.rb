@@ -39,11 +39,12 @@ class RadarTarget
     yellow = [255,255,0]
     red = [255,0,0]
     @tag = []
+    @tag.push(["", red])
 
     
     if @in_control 
-      @tag.push([@type + @cat, yellow ])
       @tag.push([@callsign, yellow])
+      @tag.push([@type + @cat, yellow ])
     end
 
     unless @contact_lost_stage_2
@@ -63,8 +64,8 @@ class RadarTarget
       @tag.push([@gspd, yellow])
     end
 
-    @emergency ? @tag.push(["*EMER*", red]) : nil    
-    @mva ? @tag.push(["*MVA*", red]) : nil  
+    @emergency ? @tag[0][0] << "*EMER*" : nil    
+    @mva ? @tag[0][0] << "*MVA*" : nil  
 
   end
 

@@ -11,10 +11,6 @@ class Autopilot
     @target_heading = 0
     @target_speed = 0
     @target_track = 0
-    @alert = false
-    @alert_counter = 0
-    @alert_flag = false
-    @alert_label = ""
   end
 
   def fly(weather)
@@ -62,41 +58,8 @@ class Autopilot
     @aircraft.ias = change_speed
     @aircraft.heading = change_heading
 
-    if @alert
-      unless @alert_counter == 0
-        if @alert_flag
-          @aircraft.callsign << @alert_label
-          @alert_flag = false
-          @alert_counter -= 1
-        else
-          for i in 1..@alert_label.length
-            @aircraft.callsign.chop!
-            @alert_flag = true
-          end
-
-          @alert_counter -= 1
-        end 
-      else
-        @alert = false
-      end
-    end
-
-    if @aircraft.ho_rcv = true
-      @aircraft.rcv_countdown == 0 ? @aircraft.ho_rcv = false : @aircraft.rcv_countdown -= 1
-    end
-
-    if @aircraft.ho_snt = true
-      @aircraft.snt_countdown == 0 ? @aircraft.ho_snt = false : @aircraft.snt_countdown -= 1
-    end
-
   end
 
-  def alert(alert)
-    @alert_label = alert
-    @alert = true
-    @alert_counter = 10
-    @alert_flag = true
-  end
 
   def get_control_input(delta, change_rate)
     #This function determines the degree of control input
