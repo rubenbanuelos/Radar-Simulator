@@ -1,22 +1,6 @@
-* EXCEPTION:
-* ERROR: :type= method missing on ~TrueClass~.
-
-#+begin_src ~TrueClass#inspect~
-true
-#+end_src ~TrueClass#inspect~
-
-
-
-The method named
-  :type=
-with args
-  ["GENERIC"]
-doesn't exist on [TrueClass, ValueType].
-
-(suggestions above)
+* EXCEPTION: can't convert Array to Integer
 ** Backtrace:
-*** app/aircraft.rb:57:in update_target
-*** app/session.rb:34:in begin_session
-*** app/session.rb:33:in begin_session
-*** app/main.rb:61:in initialize
-*** app/main.rb:84:in tick
+*** app/session.rb:65:in refresh_screen
+*** app/session.rb:64:in refresh_screen
+*** app/main.rb:71:in tick
+*** app/main.rb:89:in tick

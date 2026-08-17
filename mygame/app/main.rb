@@ -1,6 +1,7 @@
 require_relative 'session'
 require_relative 'weather'
 require_relative 'vectors'
+require_relative 'alert'
 
 class Game
 
@@ -54,8 +55,10 @@ class Game
     @s.aircrafts["TEST"].ias = 200
     @s.aircrafts["TEST"].load_profile_sheet("Helicopter")
     @s.aircrafts["TEST"].position = Position.new(100,50)
-    @s.aircrafts["TEST"].radar_target.emergency = true
-    @s.aircrafts["TEST"].radar_target.mva = true
+    #@s.aircrafts["TEST"].radar_target.emergency = true
+    #@s.aircrafts["TEST"].radar_target.mva = true    
+
+    @s.alerts["Hola"] = Alert.new(@s.aircrafts["TEST"], "Sent Handover")
 
 
 
