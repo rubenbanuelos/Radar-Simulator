@@ -8,7 +8,7 @@ class Aircraft
   
   attr_accessor :autopilot, :altitude, :heading, :ias, :position, :type, :wake_category, :trk, :gspd
   attr_accessor :turn_rate, :radar_target
-  attr_accessor :turn_rate, :climb_profile, :descent_profile, :top_speed, :cruise_speed, :stall_speed, :acceleration_profile, :deceleration_profile
+  attr_accessor :turn_rate, :climb_profile, :descent_profile, :top_speed, :cruise_speed, :stall_speed, :acceleration_profile, :deceleration_profile, :ceiling
   attr_accessor :assigned_altitude, :assigned_heading, :assigned_waypoint, :assigned_speed
   attr_accessor :ho_rcv, :ho_snt, :snt_countdown, :rcv_countdown
   attr_reader :callsign
@@ -29,6 +29,7 @@ class Aircraft
     @top_speed = []
     @cruise_speed = []
     @stall_speed = 0
+    @ceiling = 50000
 
 
     #Aircraft instruments (Defaults to zero)
@@ -51,12 +52,6 @@ class Aircraft
 
 
     @radar_target = RadarTarget.new(@callsign)
-
-    @ho_rcv = false
-    @ho_snt = false
-
-    @rcv_countdown = 0
-    @snt_countdown = 0
   end
 
   def update_target
@@ -105,18 +100,6 @@ class Aircraft
     end
   end
 
-  def receive_handover_request
-    @autopilot.alert(" *HO*")
-    @rcv_countdown = 9
-    @radar_target.in_control = true
-    @ho_rcv = true
-  end
-
-  def send_handover_request
-    @autopilot.alert(" *HO*")
-    @snt_countdown = 9
-    @ho_snt = true
-  end
   
   def load_profile_sheet(type)
     

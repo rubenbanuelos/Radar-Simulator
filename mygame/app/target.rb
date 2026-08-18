@@ -1,7 +1,7 @@
 class RadarTarget
 
   #tag data
-  attr_accessor :callsign, :type, :alt, :gspd, :clrd_alt, :tag_position, :ghosts, :tag, :loc, :cat
+  attr_accessor :callsign, :type, :alt, :gspd, :clrd_alt, :tag_position, :ghosts, :tag, :loc, :cat, :alert
   #appearance
   attr_accessor :target_color, :ghost_color
   #flags
@@ -13,7 +13,7 @@ class RadarTarget
   def initialize (callsign)
     
     @target_color = [255,255,0,255]
-    @ghost_color = [255,255,0,128]
+    @ghost_color = [128,128,0,255]
     @callsign = callsign #Aircraft callsign
     @type = type #Aircraft
     @alt = "" #Aircraft altitude
@@ -23,6 +23,7 @@ class RadarTarget
     @tag = []
     @ghosts = [] #Ghost tracks following the airplane
     @loc = Position.new(0,0)
+    @alert = nil
 
     @emergency = false
     @squawk_ifr = true
@@ -39,11 +40,12 @@ class RadarTarget
     yellow = [255,255,0]
     red = [255,0,0]
     @tag = []
+    @tag.push(["", yellow])
 
     
     if @in_control 
-      @tag.push([@type + @cat, yellow ])
       @tag.push([@callsign, yellow])
+      @tag.push([@type + @cat, yellow ])
     end
 
     unless @contact_lost_stage_2
@@ -62,10 +64,14 @@ class RadarTarget
     unless @contact_lost_stage_2
       @tag.push([@gspd, yellow])
     end
-
-    @emergency ? @tag.push(["*EMER*", red]) : nil    
-    @mva ? @tag.push(["*MVA*", red]) : nil  
-
+    
+    unless @alert
+      @tag[0][1] = red
+      @emergency ? @tag[0][0] << "*EMER*" : nil    
+      @mva ? @tag[0][0] << "*MVA*" : nil
+    else  
+      tag[0][0] = @alert
+    end
   end
 
   def squawk_ifr=(val)
@@ -73,7 +79,7 @@ class RadarTarget
     if val == true
       @target_color = [255,255,0,255]
     else
-      @target_color = [255,255,0,128]
+      @target_color = [128,128,0,255]
     end
   end
 

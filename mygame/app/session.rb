@@ -5,18 +5,20 @@ require_relative 'draw'
 
 class Session
   #Class containing a radar session
-  attr_accessor :aircrafts, :waypoints, :weather, :sector, :time, :tz, :events,:freq, :lobby
+  attr_accessor :aircrafts, :waypoints, :weather, :sector, :time, :tz, :events,:freq, :lobby, :time_diff, :alerts
   
   def initialize
     @aircrafts = {}
     @waypoints = {}
     @events    = {}
     @lobby     = {}
-    @weather = Weather.new
-    @sector  = ""
-    @freq    = ""
-    @time    = Time.new
-    @tz      = ""
+    @alerts    = {}
+    @weather   = Weather.new
+    @sector    = ""
+    @freq      = ""
+    @time      = Time.new
+    @tz        = ""
+    @time_diff = 0
   end
 
   def add_aircraft(callsign)
@@ -46,7 +48,7 @@ class Session
     status.push([@freq,  gray])
     
     t_local = format("%02d", @time.hour ).to_s + ":" + format("%02d", @time.min) + ":" + format("%02d", @time.sec)
-    t_utc = format("%02d", (@time.hour + 8) % 24).to_s + ":" + format("%02d", @time.min) + ":" + format("%02d", @time.sec)
+    t_utc = format("%02d", (@time.hour - time_diff) % 24).to_s + ":" + format("%02d", @time.min) + ":" + format("%02d", @time.sec)
     
     status.push([t_local + " " + @tz + " " + t_utc + " UTC", gray])
 
@@ -54,33 +56,14 @@ class Session
       status.push(["**ACTIVE EMERGENCY**", red])
     end
 
-    #if (@aircrafts.all? {|_, aircraft | aircraft.radar_target.emergency == false})
-    #  status.delete(["**ACTIVE EMERGENCY**", red])
-    #end
 
     if (@aircrafts.any? {|_, aircraft| aircraft.radar_target.mva})
       status.push(["**VECTORING ALTITUDE**", red])
     end
 
-    #if (@aircrafts.all? {|_, aircraft | aircraft.radar_target.mva == false})
-    #  status.delete(["**VECTORING ALTITUDE**", red])
-    #end
-
-    if (@aircrafts.any? {|_, aircraft| aircraft.ho_rcv})
-      status.push(["RECEIVED HANDOVER REQUEST", yellow])
+    @alerts.each_value do |alert|
+      status.push([alert.text,alert.color])
     end
-
-    #if (@aircrafts.all? {|_, aircraft | aircraft.ho_rcv == false})
-    #  status.delete(["RECEIVED HANDOVER REQUEST", yellow])
-    #end
-
-    if (@aircrafts.any? {|_, aircraft| aircraft.ho_snt})
-      status.push(["SENT HANDOVER REQUEST", yellow])
-    end
-
-    #if (@aircrafts.all? {|_, aircraft | aircraft.ho_rcv == false})
-    #  status.delete(["SENT HANDOVER REQUEST", yellow])
-    #end
 
     draw_status(args, status)
     draw_background args #Draws background
@@ -98,10 +81,22 @@ class Session
   end
 
   def step
+
+    #Advance one second of simulation with aircraft
     @aircrafts.each_value do |aircraft|
       aircraft.autopilot.fly(weather)
     end
-    @time += 1
+
+    #Move active alerts forward
+    @alerts.each do |key, alert|
+      alert.update
+      if alert.finished
+        @alerts.delete(key)
+      end
+    end
+
+    @time += 1 #Update time
+
   end
 
 
