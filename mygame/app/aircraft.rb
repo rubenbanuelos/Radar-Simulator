@@ -51,6 +51,7 @@ class Aircraft
     @autopilot = Autopilot.new(self)
 
 
+
     @radar_target = RadarTarget.new(@callsign)
   end
 
@@ -181,6 +182,16 @@ class Aircraft
       ]
 
       cruise_speed = [
+        Profile.new(110, 0),
+        Profile.new(80, 20000)
+      ]
+
+      climb_speed = [
+        Profile.new(110, 0),
+        Profile.new(80, 20000)
+      ]
+
+      descent_speed = [
         Profile.new(110, 0),
         Profile.new(80, 20000)
       ]
@@ -352,6 +363,8 @@ class Aircraft
     @descent_profile = descent
     @top_speed = top_speed
     @cruise_speed = cruise_speed
+    @climb_speed = climb_speed
+    @descent_speed = descent_speed
     @stall_speed = stall_speed
     @acceleration_profile = acceleration_profile
     @deceleration_profile = deceleration_profile
