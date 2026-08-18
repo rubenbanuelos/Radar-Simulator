@@ -55,6 +55,7 @@ class Game
     @s.aircrafts["TEST"].ias = 200
     @s.aircrafts["TEST"].load_profile_sheet("Helicopter")
     @s.aircrafts["TEST"].position = Position.new(100,50)
+    @s.aircrafts["TEST"].assigned_altitude = 2000
     #@s.aircrafts["TEST"].radar_target.emergency = true
     #@s.aircrafts["TEST"].radar_target.mva = true    
 
