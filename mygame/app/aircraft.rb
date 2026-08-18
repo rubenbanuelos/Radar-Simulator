@@ -8,7 +8,7 @@ class Aircraft
   
   attr_accessor :autopilot, :altitude, :heading, :ias, :position, :type, :wake_category, :trk, :gspd
   attr_accessor :turn_rate, :radar_target
-  attr_accessor :turn_rate, :climb_profile, :descent_profile, :top_speed, :cruise_speed, :stall_speed, :acceleration_profile, :deceleration_profile, :ceiling
+  attr_accessor :turn_rate, :climb_profile, :descent_profile, :top_speed, :cruise_speed, :stall_speed, :acceleration_profile, :deceleration_profile, :ceiling, :climb_speed, :descent_speed
   attr_accessor :assigned_altitude, :assigned_heading, :assigned_waypoint, :assigned_speed
   attr_accessor :ho_rcv, :ho_snt, :snt_countdown, :rcv_countdown
   attr_reader :callsign
@@ -49,6 +49,7 @@ class Aircraft
     @assigned_waypoint  = nil
     @assigned_speed     = nil
     @autopilot = Autopilot.new(self)
+
 
 
     @radar_target = RadarTarget.new(@callsign)
@@ -181,6 +182,16 @@ class Aircraft
       ]
 
       cruise_speed = [
+        Profile.new(110, 0),
+        Profile.new(80, 20000)
+      ]
+
+      climb_speed = [
+        Profile.new(110, 0),
+        Profile.new(80, 20000)
+      ]
+
+      descent_speed = [
         Profile.new(110, 0),
         Profile.new(80, 20000)
       ]
@@ -352,6 +363,8 @@ class Aircraft
     @descent_profile = descent
     @top_speed = top_speed
     @cruise_speed = cruise_speed
+    @climb_speed = climb_speed
+    @descent_speed = descent_speed
     @stall_speed = stall_speed
     @acceleration_profile = acceleration_profile
     @deceleration_profile = deceleration_profile

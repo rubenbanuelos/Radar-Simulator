@@ -11,6 +11,7 @@ class Autopilot
     @target_heading = 0
     @target_speed = 0
     @target_track = 0
+    @regime = "CRUISE"
   end
 
   def fly(weather)
@@ -44,9 +45,20 @@ class Autopilot
       [@aircraft.assigned_altitude, @aircraft.ceiling].min : 
       [@aircraft.altitude, @aircraft.ceiling].min
     
-    @target_speed = @aircraft.assigned_speed ? 
-      [@aircraft.assigned_speed,interpolator(@aircraft.top_speed,@aircraft.altitude)].min : #Target speed has to be below redline
-      interpolator(@aircraft.cruise_speed, @aircraft.altitude) #Select best cruise speed at altitude
+    
+    if @regime == "CRUISE"
+      @target_speed = @aircraft.assigned_speed ? 
+        [@aircraft.assigned_speed,interpolator(@aircraft.top_speed,@aircraft.altitude)].min : #Target speed has to be below redline
+        interpolator(@aircraft.cruise_speed, @aircraft.altitude) #Select best cruise speed at altitude
+    elsif @regime == "CLIMB"
+      @target_speed = @aircraft.assigned_speed ? 
+        [@aircraft.assigned_speed,interpolator(@aircraft.top_speed,@aircraft.altitude)].min : #Target speed has to be below redline
+        interpolator(@aircraft.climb_speed, @aircraft.altitude) #Select best cruise speed at altitude
+    elsif @regime == "DESCENT"
+      @target_speed = @aircraft.assigned_speed ? 
+        [@aircraft.assigned_speed,interpolator(@aircraft.top_speed,@aircraft.altitude)].min : #Target speed has to be below redline
+        interpolator(@aircraft.descent_speed, @aircraft.altitude) #Select best cruise speed at altitude
+    end
 
     @target_speed = @aircraft.stall_speed > @target_speed ? @aircraft.stall_speed : @target_speed 
 
@@ -73,17 +85,19 @@ class Autopilot
     #Aircraft is at target altitude
     if delta == 0
       @aircraft.assigned_altitude = nil
+      @regime = "CRUISE"
       return @aircraft.altitude
     end
 
     #Determine climb or descent regime
     if delta > 0 #CLIMB
       rate = interpolator(@aircraft.climb_profile, @aircraft.altitude) / 60
-      #puts @aircraft.callsign + " " + rate.to_s
+      @regime = "CLIMB"
       return @aircraft.altitude + get_control_input(delta, rate)
     end
     if delta < 0 #DESCENT
       rate = interpolator(@aircraft.descent_profile, @aircraft.altitude) / 60
+      @regime = "DESCENT"
       return @aircraft.altitude + get_control_input(delta, rate)
     end
 
