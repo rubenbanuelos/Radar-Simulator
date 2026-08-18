@@ -63,7 +63,6 @@ class Session
 
     @alerts.each_value do |alert|
       status.push([alert.text,alert.color])
-      puts alert.text
     end
 
     draw_status(args, status)

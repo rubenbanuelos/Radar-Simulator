@@ -41,8 +41,8 @@ class Autopilot
 
     #Check if there are assigned values
     @target_altitude = @aircraft.assigned_altitude ? 
-      @aircraft.assigned_altitude : 
-      @aircraft.altitude
+      [@aircraft.assigned_altitude, @aircraft.ceiling].min : 
+      [@aircraft.altitude, @aircraft.ceiling].min
     
     @target_speed = @aircraft.assigned_speed ? 
       [@aircraft.assigned_speed,interpolator(@aircraft.top_speed,@aircraft.altitude)].min : #Target speed has to be below redline

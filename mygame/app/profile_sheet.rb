@@ -6,6 +6,7 @@ ProfileSheet = Struct.new(
   :descent_performance,
   :top_speed,
   :cruise_speed,
-  :stall_speed
+  :stall_speed,
+  :ceiling
 )
 
