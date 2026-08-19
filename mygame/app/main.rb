@@ -2,6 +2,7 @@ require_relative 'session'
 require_relative 'weather'
 require_relative 'vectors'
 require_relative 'alert'
+require_relative 'profile_sheet'
 
 class Game
 
@@ -10,13 +11,15 @@ class Game
   def initialize args
     args.state.timer ||= 0
 
-     @s = Session.new
+    @profiles = parse_profiles
 
-     @s.sector = "PAZA  -  ANCHORAGE CENTER"
-     @s.freq   = "SECTOR 13     130.200 MHZ"
-     @s.time = Time.new(2009,11,13,16,31,19)
-     @s.tz = "AST"
-     @s.time_diff = -8
+    @s = Session.new
+    
+    @s.sector = "PAZA  -  ANCHORAGE CENTER"
+    @s.freq   = "SECTOR 13     130.200 MHZ"
+    @s.time = Time.new(2009,11,13,16,31,19)
+    @s.tz = "AST"
+    @s.time_diff = -8
 
     winds = [
       Profile.new(Wind.new(5.0, 70.0), 0),
