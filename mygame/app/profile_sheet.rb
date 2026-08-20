@@ -19,7 +19,7 @@ ProfileSheet = Struct.new(
 def convert_to_profiles(hash)
   #Takes a hash from a json and convert it to a profile
   out = []
-  hash.each do |altitude, data|
+  hash.each do |data, altitude|
     out.push(Profile.new(altitude.to_i, data.to_f))
   end
   return out
@@ -29,7 +29,7 @@ def parse_profiles
   flight_profiles = {}
 
   data = DR.parse_json(File.read('data/profiles.json'))
-  #puts data
+  
   data.each do |aircraft, sheet|
     aircraft_sheet = ProfileSheet.new()
     
@@ -50,4 +50,8 @@ def parse_profiles
 
   return flight_profiles
 
+end
+
+def parse_catalog
+  data = DR.parse_json(File.read('data/catalog.json'))
 end

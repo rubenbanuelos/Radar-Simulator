@@ -3,6 +3,44 @@
 
 
 require 'json'
+
+
+catalog = {
+  "PA18" => {:type => "Piston Single-Engine", :category => "L"},
+  "PA12" => {:type => "Piston Single-Engine", :category => "L"},
+  "C185" => {:type => "Piston Single-Engine", :category => "L"},
+  "C180" => {:type => "Piston Single-Engine", :category => "L"},
+  "C170" => {:type => "Piston Single-Engine", :category => "L"},
+  "C206" => {:type => "Piston Multi-Engine", :category => "L"},
+  "C207" => {:type => "Turboprop Single-Engine", :category => "L"},
+  "C208" => {:type => "Turboprop Single-Engine", :category => "L"},
+  "C172" => {:type => "Piston Single-Engine", :category => "L"},
+  "C182" => {:type => "Piston Single-Engine", :category => "L"},
+  "DHC2" => {:type => "Piston Single-Engine", :category => "L"},
+  "DHC3" => {:type => "Piston Single-Engine", :category => "L"},
+  "DHC6" => {:type => "Piston Multi-Engine", :category => "L"},
+  "PA31" => {:type => "Turboprop Multi-Engine", :category => "L"},
+  "PAY2" => {:type => "Turboprop Multi-Engine", :category => "L"},
+  "BE20" => {:type => "Turboprop Multi-Engine", :category => "L"},
+  "BE19" => {:type => "Piston Single-Engine", :category => "L"},
+  "DH8A" => {:type => "Turboprop Multi-Engine", :category => "M"},
+  "B732" => {:type => "Jet", :category => "M"},
+  "B734" => {:type => "Jet", :category => "M"},
+  "B737" => {:type => "Jet", :category => "M"},
+  "B738" => {:type => "Jet", :category => "M"},
+  "B739" => {:type => "Jet", :category => "M"},
+  "B752" => {:type => "Jet", :category => "H"},
+  "B77L" => {:type => "Jet", :category => "H"},
+  "B74F" => {:type => "Jet", :category => "H"},
+  "A320" => {:type => "Jet", :category => "M"},
+  "A330" => {:type => "Jet", :category => "H"},
+  "A340" => {:type => "Jet", :category => "H"},
+  "B763" => {:type => "Jet", :category => "H"},
+  "BE58" => {:type => "Piston Multi-Engine", :category => "L"},
+  "B06T" => {:type => "Helicopter", :category => "L"}
+}
+
+catalog.default = {:type => "Piston Single-Engine", :category => "L"}
  
 profile_sheets = {
   "Jet" => {
@@ -340,11 +378,67 @@ profile_sheets = {
     "Ceiling" => 10000,
     "Turn rate" => 3
 
+  },
+
+  "Piston Multi-Engine" => {
+    "Climb Rate" => {
+      0     => 2500,
+      2000  => 2000,
+      5000  => 1500,
+      12000 => 1200
+    },
+
+    "Descent Rate" => {
+      0      => 200,  
+      500    => 400,
+      5000   => 1000,
+      12000  => 2000
+    },
+
+    "Cruise Speed" => {
+      0     => 160,
+      12000 => 120
+    },
+
+
+    "Climb Speed" => {
+      0     => 130,
+      12000 => 100
+    },
+
+    "Descent Speed" => {
+      0     => 85,
+      2000  => 90,
+      10000 => 150
+    },
+
+    "Top Speed" => {
+      0     => 180, 
+      10000 => 160
+    },
+
+    "Acceleration" => {
+      0     => 2.5,
+      1000  => 2.0,
+      12000 => 1.0
+    },
+
+    "Deceleration" => {
+      0     => 1.0,
+      1000  => 2.0,
+      10000 => 2.0
+    },
+
+    "Stall Speed" => 75,
+    "Ceiling" => 12000,
+    "Turn rate" => 3
+
   }
 
 }
 
 File.write('profiles.json', profile_sheets.to_json)
+File.write('catalog.json', catalog.to_json)
 
 
 

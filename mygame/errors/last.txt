@@ -1,5 +1,20 @@
-* EXCEPTION: open data/profiles.json
+* EXCEPTION:
+* ERROR: :target_speed method missing on ~Autopilot~.
+
+#+begin_src ~Autopilot#inspect~
+#<Autopilot:0x23a7904b810 @target_heading=0, @regime="CRUISE", @target_speed=578571.4285714286, @target_altitude=2000, @aircraft=#<Aircraft:0x23a7904ba20>, @target_track=0>
+#+end_src ~Autopilot#inspect~
+
+
+
+The method named
+  :target_speed
+doesn't exist on [Autopilot, #<Class:#<Autopilot:0x23a7904b810>>].
+
+(suggestions above)
 ** Backtrace:
-*** app/profile_sheet.rb:19:in parse_profiles
-*** app/main.rb:14:in initialize
-*** app/main.rb:92:in tick
+*** app/autopilot.rb:64:in fly
+*** app/session.rb:87:in step
+*** app/session.rb:86:in step
+*** app/main.rb:80:in tick
+*** app/main.rb:93:in tick

@@ -10,8 +10,8 @@ class Game
   
   def initialize args
     args.state.timer ||= 0
-
-    @profiles = parse_profiles
+    
+    profiles = parse_profiles
 
     @s = Session.new
     
@@ -56,7 +56,7 @@ class Game
     @s.add_aircraft("TEST")
     @s.aircrafts["TEST"].altitude = 3000
     @s.aircrafts["TEST"].ias = 200
-    @s.aircrafts["TEST"].load_profile_sheet("Helicopter")
+    @s.aircrafts["TEST"].type = "B06T"
     @s.aircrafts["TEST"].position = Position.new(100,50)
     @s.aircrafts["TEST"].assigned_altitude = 2000
     #@s.aircrafts["TEST"].radar_target.emergency = true

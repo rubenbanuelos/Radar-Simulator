@@ -16,7 +16,6 @@ class Autopilot
 
   def fly(weather)
     #Calculate groundspeed and track and update data for aircraft
-
     #Compute true airspeed
     tas = calculate_tas(weather, @aircraft.altitude, @aircraft.ias)
     vtas = get_cartesian_coordinates(tas, @aircraft.heading)
@@ -45,10 +44,9 @@ class Autopilot
       [@aircraft.assigned_altitude, @aircraft.ceiling].min : 
       [@aircraft.altitude, @aircraft.ceiling].min
     
-    
     if @regime == "CRUISE"
       @target_speed = @aircraft.assigned_speed ? 
-        [@aircraft.assigned_speed,interpolator(@aircraft.top_speed,@aircraft.altitude)].min : #Target speed has to be below redline
+        [@aircraft.assigned_speed, interpolator(@aircraft.top_speed,@aircraft.altitude)].min : #Target speed has to be below redline
         interpolator(@aircraft.cruise_speed, @aircraft.altitude) #Select best cruise speed at altitude
     elsif @regime == "CLIMB"
       @target_speed = @aircraft.assigned_speed ? 
