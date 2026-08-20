@@ -1,20 +1,18 @@
 * EXCEPTION:
-* ERROR: :target_speed method missing on ~Autopilot~.
+* ERROR: Exception while requiring app/main.rb.
+* ERROR: Exception while requiring app/session.rb.
+* ERROR: Exception while requiring app/draw.rb.
+* ERROR:
+Undefined method target for main.
 
-#+begin_src ~Autopilot#inspect~
-#<Autopilot:0x23a7904b810 @target_heading=0, @regime="CRUISE", @target_speed=578571.4285714286, @target_altitude=2000, @aircraft=#<Aircraft:0x23a7904ba20>, @target_track=0>
-#+end_src ~Autopilot#inspect~
 
-
-
-The method named
-  :target_speed
-doesn't exist on [Autopilot, #<Class:#<Autopilot:0x23a7904b810>>].
-
-(suggestions above)
 ** Backtrace:
-*** app/autopilot.rb:64:in fly
-*** app/session.rb:87:in step
-*** app/session.rb:86:in step
-*** app/main.rb:80:in tick
-*** app/main.rb:93:in tick
+*** app/draw.rb:109
+*** app/session.rb:4
+*** app/main.rb:1
+** Backtrace:
+*** app/session.rb:4
+*** app/main.rb:1
+** Backtrace:
+*** app/main.rb:1
+** Backtrace:
