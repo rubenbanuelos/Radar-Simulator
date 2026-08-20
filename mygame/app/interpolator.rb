@@ -10,7 +10,7 @@ def interpolator(table, altitude)
 
 
   for entry in table
-    if altitude >= entry.altitude
+        if altitude >= entry.altitude
       lower_altitude = entry.altitude
       lower_val = entry.value
     end

@@ -1,23 +1,20 @@
 * EXCEPTION:
-* ERROR: :climb_speed method missing on ~Aircraft~.
+* ERROR: :target_speed method missing on ~Autopilot~.
 
-#+begin_src ~Aircraft#inspect~
-#<Aircraft:0x2d408346af0 @top_speed=[#<struct Profile value=125, altitude=0>, #<struct Profile value=80, altitude=20000>], @stall_speed=0, @assigned_waypoint=nil, @autopilot=#<Autopilot:0x2d408346910>, @cruise_speed=[#<struct Profile value=110, altitude=0>, #<struct Profile value=80, altitude=20000>], @descent_profile=[#<struct Profile value=-200, altitude=0>, #<struct Profile value=-500, altitude=1000>, #<struct Profile value=-1000, altitude=5000>, #<struct Profile value=-2000, altitude=10000>, #<struct Profile value=-2500, altitude=100000>], @assigned_heading=nil, @climb_speed=[#<struct Profile value=110, altitude=0>, #<struct Profile value=80, altitude=20000>], @descent_speed=[#<struct Profile value=110, altitude=0>, #<struct Profile value=80, altitude=20000>], @acceleration_profile=[#<struct Profile value=4.0, altitude=0>, #<struct Profile value=2.0, altitude=50000>, #<struct Profile value=1.5, altitude=20000>], @altitude=3036.666666666666, @assigned_altitude=5000, @deceleration_profile=[#<struct Profile value=-2.0, altitude=0>, #<struct Profile value=-3.0, altitude=50000>, #<struct Profile value=-3.0, altitude=20000>], @ceiling=50000, @climb_profile=[#<struct Profile value=2500, altitude=0>, #<struct Profile value=2000, altitude=5000>, #<struct Profile value=1000, altitude=10000>, #<struct Profile value=500, altitude=100000>], @wake_category="M", @heading=0, @gspd=192.5643609538572, @type="GENERIC", @ias=197.996, @turn_rate=3, @radar_target=#<RadarTarget:0x2d408346880>, @position=#<struct Position x=100.0039789951926, y=50.10783728959354>, @assigned_speed=nil, @trk=2.256474333740072, @callsign="TEST">
-#+end_src ~Aircraft#inspect~
+#+begin_src ~Autopilot#inspect~
+#<Autopilot:0x23a7904b810 @target_heading=0, @regime="CRUISE", @target_speed=578571.4285714286, @target_altitude=2000, @aircraft=#<Aircraft:0x23a7904ba20>, @target_track=0>
+#+end_src ~Autopilot#inspect~
 
-** Did you mean?
-Here's a list of methods that kind of look like :climb_speed.
-*** :climb_profile
-*** :climb_profile=
+
 
 The method named
-  :climb_speed
-doesn't exist on [Aircraft, #<Class:#<Aircraft:0x2d408346af0>>].
+  :target_speed
+doesn't exist on [Autopilot, #<Class:#<Autopilot:0x23a7904b810>>].
 
 (suggestions above)
 ** Backtrace:
-*** app/autopilot.rb:57:in fly
+*** app/autopilot.rb:64:in fly
 *** app/session.rb:87:in step
 *** app/session.rb:86:in step
-*** app/main.rb:77:in tick
-*** app/main.rb:90:in tick
+*** app/main.rb:80:in tick
+*** app/main.rb:93:in tick

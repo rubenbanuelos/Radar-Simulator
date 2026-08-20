@@ -2,6 +2,7 @@ require_relative 'session'
 require_relative 'weather'
 require_relative 'vectors'
 require_relative 'alert'
+require_relative 'profile_sheet'
 
 class Game
 
@@ -9,14 +10,16 @@ class Game
   
   def initialize args
     args.state.timer ||= 0
+    
+    profiles = parse_profiles
 
-     @s = Session.new
-
-     @s.sector = "PAZA  -  ANCHORAGE CENTER"
-     @s.freq   = "SECTOR 13     130.200 MHZ"
-     @s.time = Time.new(2009,11,13,16,31,19)
-     @s.tz = "AST"
-     @s.time_diff = -8
+    @s = Session.new
+    
+    @s.sector = "PAZA  -  ANCHORAGE CENTER"
+    @s.freq   = "SECTOR 13     130.200 MHZ"
+    @s.time = Time.new(2009,11,13,16,31,19)
+    @s.tz = "AST"
+    @s.time_diff = -8
 
     winds = [
       Profile.new(Wind.new(5.0, 70.0), 0),
@@ -53,7 +56,7 @@ class Game
     @s.add_aircraft("TEST")
     @s.aircrafts["TEST"].altitude = 3000
     @s.aircrafts["TEST"].ias = 200
-    @s.aircrafts["TEST"].load_profile_sheet("Helicopter")
+    @s.aircrafts["TEST"].type = "B06T"
     @s.aircrafts["TEST"].position = Position.new(100,50)
     @s.aircrafts["TEST"].assigned_altitude = 2000
     #@s.aircrafts["TEST"].radar_target.emergency = true
