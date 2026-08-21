@@ -44,6 +44,22 @@ end
 
 
 def draw_target(args, target)
+
+  #Draw ghosts
+  for ghost in target.ghosts
+    args.outputs.sprites << {
+      x: ghost.x,
+      y: ghost.y,
+      w: 3,
+      h: 3,
+      path: :solid,
+      r: target.ghost_color[0],
+      g: target.ghost_color[1],
+      b: target.ghost_color[2],
+      a: target.ghost_color[3]
+    }
+  end
+
   #Draw actual radar target
   unless target.contact_lost
     args.outputs.sprites << {
@@ -101,20 +117,7 @@ def draw_target(args, target)
     a: target.target_color[3]
   }
 
-  #Draw ghosts
-  for ghost in target.ghosts
-    args.outputs.sprites << {
-      x: ghost.x,
-      y: ghost.y,
-      w: 3,
-      h: 3,
-      path: :solid,
-      r: target.ghost_color[0],
-      g: target.ghost_color[1],
-      b: target.ghost_color[2],
-      a: target.ghost_color[3]
-    }
-  end
+
 end
 
 def draw_tag(args, target)

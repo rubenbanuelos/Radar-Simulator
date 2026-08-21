@@ -41,9 +41,9 @@ def parse_profiles
     aircraft_sheet.top_speed     = convert_to_profiles(sheet["Top Speed"]    )
     aircraft_sheet.acceleration  = convert_to_profiles(sheet["Acceleration"] )
     aircraft_sheet.deceleration  = convert_to_profiles(sheet["Deceleration"] )
-    aircraft_sheet.ceiling       = sheet["Ceiling"] 
-    aircraft_sheet.stall_speed   = sheet["Stall Speed"]
-    aircraft_sheet.turn_rate     = sheet["Turn Rate"]
+    aircraft_sheet.ceiling       = sheet["Ceiling"].to_f
+    aircraft_sheet.stall_speed   = sheet["Stall Speed"].to_f
+    aircraft_sheet.turn_rate     = sheet["Turn Rate"].to_f
 
     flight_profiles[aircraft] = aircraft_sheet
   end
