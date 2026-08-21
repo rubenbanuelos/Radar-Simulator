@@ -45,9 +45,7 @@ class Game
 
     @s.weather = weather
 
-    @s.waypoints = {  
-
-    }
+    @s.waypoints = parse_waypoints 
 
  
     @s.events = {
@@ -59,6 +57,7 @@ class Game
     @s.aircrafts["TEST"].type = "B06T"
     @s.aircrafts["TEST"].position = Position.new(100,50)
     @s.aircrafts["TEST"].assigned_altitude = 2000
+    @s.aircrafts["TEST"].assigned_waypoint = @s.waypoints["ANC"]
     #@s.aircrafts["TEST"].radar_target.emergency = true
     #@s.aircrafts["TEST"].radar_target.mva = true    
 

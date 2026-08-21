@@ -1,18 +1,22 @@
 * EXCEPTION:
-* ERROR: Exception while requiring app/main.rb.
-* ERROR: Exception while requiring app/session.rb.
-* ERROR: Exception while requiring app/draw.rb.
-* ERROR:
-Undefined method target for main.
+* ERROR: :abs method missing on ~Class~.
+
+#+begin_src ~Class#inspect~
+NIL
+#+end_src ~Class#inspect~
 
 
+
+The method named
+  :abs
+doesn't exist on [NilClass].
+
+(suggestions above)
 ** Backtrace:
-*** app/draw.rb:109
-*** app/session.rb:4
-*** app/main.rb:1
-** Backtrace:
-*** app/session.rb:4
-*** app/main.rb:1
-** Backtrace:
-*** app/main.rb:1
-** Backtrace:
+*** app/autopilot.rb:76:in get_control_input
+*** app/autopilot.rb:146:in change_heading
+*** app/autopilot.rb:69:in fly
+*** app/session.rb:87:in step
+*** app/session.rb:86:in step
+*** app/main.rb:79:in tick
+*** app/main.rb:92:in tick

@@ -130,17 +130,20 @@ class Autopilot
       #Calculate track to waypoint
       distance_vector_x = @aircraft.assigned_waypoint.position.x - @aircraft.position.x
       distance_vector_y = @aircraft.assigned_waypoint.position.y - @aircraft.position.y
+
       
       p = get_polar_coordinates(distance_vector_x, distance_vector_y)
-      distance = p[0]
-      track    = p[1] 
+      distance =  p[0]
+      track    = (p[1] + 360)%360
 
       if distance < 1 #Aircraft is close to waypoint, remove waypoint and maintain heading
         @target_heading = @aircraft.heading
         @aircraft.assigned_waypoint = nil
         return @aircraft.heading
+
       else
         delta = get_heading_difference(@aircraft.trk, track)
+        
         if delta > 0 
           a = (@aircraft.heading + get_control_input(delta, @aircraft.turn_rate) + 360)%360
           return a 
