@@ -3,6 +3,8 @@ require_relative 'weather'
 require_relative 'vectors'
 require_relative 'alert'
 require_relative 'profile_sheet'
+require_relative 'populate'
+require_relative 'events'
 
 class Game
 
@@ -47,21 +49,10 @@ class Game
 
     @s.waypoints = parse_waypoints 
 
- 
-    @s.events = {
-    }
+    populate(@s)
 
-    @s.add_aircraft("TEST")
-    @s.aircrafts["TEST"].altitude = 3000
-    @s.aircrafts["TEST"].ias = 200
-    @s.aircrafts["TEST"].type = "B06T"
-    @s.aircrafts["TEST"].position = Position.new(100,50)
-    @s.aircrafts["TEST"].assigned_altitude = 2000
-    @s.aircrafts["TEST"].assigned_waypoint = @s.waypoints["ANC"]
-    #@s.aircrafts["TEST"].radar_target.emergency = true
-    #@s.aircrafts["TEST"].radar_target.mva = true    
+    add_events(@s)
 
-    @s.alerts["Hola"] = Alert.new(@s.aircrafts["TEST"], "Sent Handover")
 
 
 

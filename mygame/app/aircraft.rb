@@ -135,6 +135,36 @@ class Aircraft
 
   end
 
+  def say_position
+    puts @position.x
+    puts @position.y
+  end
+
+  def say_speed
+    puts @ias
+  end
+
+  def say_heading
+    puts @heading
+  end
+
+  def say_distance_to(wp)
+    
+    dx = wp.position.x - @position.x
+    dy = wp.position.y - @position.y
+
+    puts get_polar_coordinates(dx,dy)[0]
+  end
+
+  def say_bearing_to(wp)
+    dx = wp.position.x - @position.x
+    dy = wp.position.y - @position.y
+
+    puts (get_polar_coordinates(dx,dy)[1] + 360) % 360 
+  end
+
+
+
 end
 
 

@@ -1,5 +1,5 @@
 * EXCEPTION:
-* ERROR: :radar_target method missing on ~Class~.
+* ERROR: :[] method missing on ~Class~.
 
 #+begin_src ~Class#inspect~
 NIL
@@ -8,13 +8,15 @@ NIL
 
 
 The method named
-  :radar_target
+  :[]
+with args
+  ["WGR"]
 doesn't exist on [NilClass].
 
 (suggestions above)
 ** Backtrace:
-*** app/alert.rb:31:in update
-*** app/session.rb:92:in step
-*** app/session.rb:91:in step
-*** app/main.rb:87:in tick
-*** app/main.rb:99:in tick
+*** app/events.rb:3:in add_events
+*** app/session.rb:119:in do_event
+*** app/session.rb:116:in do_event
+*** app/main.rb:69:in tick
+*** app/main.rb:79:in tick
