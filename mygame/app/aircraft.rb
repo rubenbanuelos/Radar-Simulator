@@ -50,8 +50,6 @@ class Aircraft
     @assigned_speed     = nil
     @autopilot = Autopilot.new(self)
 
-
-
     @radar_target = RadarTarget.new(@callsign)
   end
 
@@ -69,10 +67,12 @@ class Aircraft
     else
       @radar_target.ghosts.push(Position.new(-4,-4))
     end
+
     @radar_target.loc = @position.dup
     # Convert map location to pixels on screen
     @radar_target.loc.x *= GlobalParams::SCALE_FACTOR
     @radar_target.loc.y *= GlobalParams::SCALE_FACTOR
+
     if @assigned_altitude
       if @assigned_altitude > @altitude
         @radar_target.clrd_alt = "↗" + format("%03d",(@assigned_altitude/100))
@@ -109,6 +109,12 @@ class Aircraft
     catalog = parse_catalog
     load_profile_sheet(profiles[catalog[model]["type"]])
     @wake_category = catalog[model]["category"]
+  end
+
+  def sweep_angle
+    return Math::atan2(
+        GlobalParams::MAP_CENTER_X - @radar_target.loc.x,
+        GlobalParams::MAP_CENTER_Y - @radar_target.loc.y)
   end
 
   

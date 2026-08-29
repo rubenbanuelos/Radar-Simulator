@@ -69,7 +69,7 @@ class Session
     draw_background args #Draws background
      
     @aircrafts.each_value do |aircraft| #draws aircrafts in initial positions
-      
+
       draw_target(args, aircraft.radar_target) #draw targets and ghosts
       
       if aircraft.radar_target.squawk_ifr
@@ -100,9 +100,16 @@ class Session
   end
 
 
-  def update
+  def update args
     @aircrafts.each_value do |aircraft|
-      aircraft.update_target
+      angle = ((aircraft.sweep_angle * 150/Math::PI).round + 300) % 300
+      slice = args.state.timer % 300
+
+      puts angle
+      puts slice
+      if angle == slice
+        aircraft.update_target
+      end
     end
   end
 

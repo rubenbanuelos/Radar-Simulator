@@ -1,5 +1,5 @@
 * EXCEPTION:
-* ERROR: :abs method missing on ~Class~.
+* ERROR: :radar_target method missing on ~Class~.
 
 #+begin_src ~Class#inspect~
 NIL
@@ -8,15 +8,13 @@ NIL
 
 
 The method named
-  :abs
+  :radar_target
 doesn't exist on [NilClass].
 
 (suggestions above)
 ** Backtrace:
-*** app/autopilot.rb:76:in get_control_input
-*** app/autopilot.rb:146:in change_heading
-*** app/autopilot.rb:69:in fly
-*** app/session.rb:87:in step
-*** app/session.rb:86:in step
-*** app/main.rb:79:in tick
-*** app/main.rb:92:in tick
+*** app/alert.rb:31:in update
+*** app/session.rb:92:in step
+*** app/session.rb:91:in step
+*** app/main.rb:87:in tick
+*** app/main.rb:99:in tick
