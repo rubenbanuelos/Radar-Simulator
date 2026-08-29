@@ -1,0 +1,27 @@
+#USE THIS FILE TO GENERATE A WEATHER SYSTEM FOR THE MAP
+
+require 'json'
+
+weather = {
+  "Winds" => {
+    0     => [5.0,  70.0 ],
+    1000  => [12.0, 120.0],
+    5000  => [18.0, 170.0],
+    10000 => [25.0, 225.0],
+    25000 => [38.0, 190.0],
+    50000 => [55.0, 155.0]
+  },
+
+  "Temperatures" => {
+    0     => 10.0,
+    3000  => 0.0,
+    10000 => -10.0,
+    20000 => -20.0,
+    50000 => -40.0
+  },
+
+  "Altimeter" => 29.72
+
+}
+    
+File.write('weather.json', weather.to_json)
