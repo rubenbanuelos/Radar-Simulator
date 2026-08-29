@@ -58,14 +58,6 @@ class Game
     @s.aircrafts["TEST"].position = Position.new(100,50)
     @s.aircrafts["TEST"].assigned_altitude = 2000
     @s.aircrafts["TEST"].assigned_waypoint = @s.waypoints["ANC"]
-
-    @s.add_aircraft("XB-OBE")
-    @s.aircrafts["XB-OBE"].altitude = 3000
-    @s.aircrafts["XB-OBE"].ias = 200
-    @s.aircrafts["XB-OBE"].type = "B06T"
-    @s.aircrafts["XB-OBE"].position = Position.new(120,40)
-    @s.aircrafts["XB-OBE"].assigned_altitude = 2000
-    @s.aircrafts["XB-OBE"].assigned_waypoint = @s.waypoints["ANC"]
     #@s.aircrafts["TEST"].radar_target.emergency = true
     #@s.aircrafts["TEST"].radar_target.mva = true    
 
@@ -80,15 +72,12 @@ class Game
   def tick args
     args.state.timer += 1
     @s.refresh_screen args
-
+    @s.update args
     #begin flight update loop
     if args.state.timer % 60 == 0
       @s.do_event(args.state.timer)
       @s.step
     end
-
-    @s.update args
-
 
   end
 

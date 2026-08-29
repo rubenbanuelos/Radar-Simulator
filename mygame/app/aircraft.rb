@@ -92,10 +92,9 @@ class Aircraft
 
     for i in 1..5
       @radar_target.ghosts.push(
-        
         Position.new(
-          (@position.x + step[0]*i)*GlobalParams::SCALE_FACTOR, 
-          (@position.y + step[1]*i)*GlobalParams::SCALE_FACTOR
+          @position.x, 
+          @position.y
         )
       )
     end
