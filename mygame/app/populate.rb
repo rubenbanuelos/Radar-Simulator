@@ -1,11 +1,24 @@
 #Aircraft populator
 
-def populate
+def populate(s)
 
-  functs = {
-    :callsign => "",
-    :heading  => -> {}
 
-  }
+    s.add_aircraft("TRP3")
+    s.aircrafts["TRP3"].altitude = 6500
+    s.aircrafts["TRP3"].ias = 95
+    s.aircrafts["TRP3"].type = "B06T"
+    s.aircrafts["TRP3"].position = Position.new(205.98, 30.45)
+    s.aircrafts["TRP3"].heading = 330
+    s.aircrafts["TRP3"].assigned_altitude = 6500
+    s.aircrafts["TRP3"].assigned_waypoint = @s.waypoints["WGR"]
+    s.aircrafts["TPR3"].radar_target.squawk_ifr = false
+
+
+
+
+    #s.aircrafts["TEST"].radar_target.emergency = true
+    #s.aircrafts["TEST"].radar_target.mva = true    
+
+    #@s.alerts["Hola"] = Alert.new(@s.aircrafts["TEST"], "Sent Handover")
 
 end
