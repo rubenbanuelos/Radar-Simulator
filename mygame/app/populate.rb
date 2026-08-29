@@ -19,6 +19,5 @@ def populate(s)
     #s.aircrafts["TEST"].radar_target.emergency = true
     #s.aircrafts["TEST"].radar_target.mva = true    
 
-    #@s.alerts["Hola"] = Alert.new(@s.aircrafts["TEST"], "Sent Handover")
 
 end

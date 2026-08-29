@@ -19,7 +19,7 @@ class RadarTarget
     @alt = "" #Aircraft altitude
     @gspd = "" #Aircraft ground speed
     @clrd_alt = nil #Aircraft current cleared altitude
-    @tag_position = "BL"
+    @tag_position = "BR"
     @tag = []
     @ghosts = [] #Ghost tracks following the airplane
     @loc = Position.new(0,0)
