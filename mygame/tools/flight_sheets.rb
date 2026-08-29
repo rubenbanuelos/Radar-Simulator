@@ -33,11 +33,13 @@ catalog = {
   "B77L" => {:type => "Jet", :category => "H"},
   "B74F" => {:type => "Jet", :category => "H"},
   "A320" => {:type => "Jet", :category => "M"},
+  "A321" => {:type => "Jet", :category => "M"},
   "A330" => {:type => "Jet", :category => "H"},
   "A340" => {:type => "Jet", :category => "H"},
   "B763" => {:type => "Jet", :category => "H"},
   "BE58" => {:type => "Piston Multi-Engine", :category => "L"},
-  "B06T" => {:type => "Helicopter", :category => "L"}
+  "B06T" => {:type => "Helicopter", :category => "L"},
+  "C550" => {:type => "Jet", :category => "L"}
 }
 
 catalog.default = {:type => "Piston Single-Engine", :category => "L"}

@@ -114,14 +114,13 @@ class Session
     #Convert time to ticks
 
     events.each do |time, event|
-      #puts time*60
-      #puts tick
       event.call if tick == time*60
     end
 
   end
 
   def spawn_aicraft(aircraft)
+    aircraft.update_target
     @aircrafts[aircraft.callsign] = aircraft
   end
 

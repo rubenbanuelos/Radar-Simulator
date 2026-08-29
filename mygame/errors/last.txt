@@ -1,23 +1,20 @@
 * EXCEPTION:
-* ERROR: :callsign method missing on ~String~.
+* ERROR: :radar_target method missing on ~Class~.
 
-#+begin_src ~String#inspect~
-"TRP3"
-#+end_src ~String#inspect~
+#+begin_src ~Class#inspect~
+NIL
+#+end_src ~Class#inspect~
 
-** Did you mean?
-Here's a list of methods that kind of look like :callsign.
-*** :caller
+
 
 The method named
-  :callsign
-doesn't exist on [String, #<Class:#<String:0x19460fd2be0>>, ValueType, Comparable].
+  :radar_target
+doesn't exist on [NilClass].
 
 (suggestions above)
 ** Backtrace:
-*** app/session.rb:125:in spawn_aicraft
-*** app/events.rb:3:in add_events
-*** app/session.rb:119:in do_event
-*** app/session.rb:116:in do_event
-*** app/main.rb:44:in tick
+*** app/alert.rb:31:in update
+*** app/session.rb:92:in step
+*** app/session.rb:91:in step
+*** app/main.rb:45:in tick
 *** app/main.rb:54:in tick

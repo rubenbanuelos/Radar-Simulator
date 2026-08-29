@@ -42,10 +42,9 @@ class RadarTarget
     @tag = []
     @tag.push(["", yellow])
 
-    
     if @in_control 
       @tag.push([@callsign, yellow])
-      @tag.push([@type + @cat, yellow ])
+      @tag.push([@type + " " + @cat, yellow ])
     end
 
     unless @contact_lost_stage_2

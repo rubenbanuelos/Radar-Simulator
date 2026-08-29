@@ -25,9 +25,9 @@ class Alert
 
 
   def update
-
     unless @finished
       
+ 
       if @aircraft.radar_target.alert
         @aircraft.radar_target.alert = nil
         @timer -= 1
