@@ -86,3 +86,42 @@ def calculate_tas(weather, altitude, ias)
 
 end
 
+def parse_weather
+  data = DR.parse_json(File.read("data/weather.json"))
+
+  weather = Weather.new
+
+  weather.altimeter = data["Altimeter"]
+
+  winds = []
+
+  data["Winds"].each do |altitude, wind|
+    puts altitude
+    
+    winds.push(
+    Profile.new(   
+        Wind.new(
+          wind[0].to_f,
+          wind[1].to_f
+        ),
+        altitude.to_f
+      )
+    )
+  end
+
+  temperatures = [] 
+  data["Temperatures"].each do |altitude, temperature|
+    temperatures.push(
+      Profile.new(
+        temperature.to_f, altitude.to_f
+      )
+    )
+  end
+
+  weather.wind_layers = winds
+  weather.temperature_layers = temperatures
+
+  return weather
+
+end
+

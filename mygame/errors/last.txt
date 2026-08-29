@@ -1,22 +1,9 @@
-* EXCEPTION:
-* ERROR: :[] method missing on ~Class~.
-
-#+begin_src ~Class#inspect~
-NIL
-#+end_src ~Class#inspect~
-
-
-
-The method named
-  :[]
-with args
-  ["WGR"]
-doesn't exist on [NilClass].
-
-(suggestions above)
+* EXCEPTION: comparison of Integer with Wind failed
 ** Backtrace:
-*** app/events.rb:3:in add_events
-*** app/session.rb:119:in do_event
-*** app/session.rb:116:in do_event
-*** app/main.rb:69:in tick
-*** app/main.rb:79:in tick
+*** app/weather.rb:21:in interpolate_wind
+*** app/weather.rb:20:in interpolate_wind
+*** app/autopilot.rb:26:in fly
+*** app/session.rb:87:in step
+*** app/session.rb:86:in step
+*** app/main.rb:52:in tick
+*** app/main.rb:61:in tick
