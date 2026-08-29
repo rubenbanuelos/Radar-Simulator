@@ -4,6 +4,7 @@ require_relative 'vectors'
 require_relative 'alert'
 require_relative 'profile_sheet'
 require_relative 'populate'
+require_relative 'events'
 
 class Game
 
@@ -50,8 +51,7 @@ class Game
 
     populate(@s)
 
-    @s.events = {
-    }
+    add_events(@s)
 
 
 
