@@ -125,4 +125,16 @@ class Session
     @aircrafts[aircraft.callsign] = aircraft
   end
 
+  def alert_ident(callsign)
+    @alerts[callsign] = Alert.new(@aircrafts[callsign], "Ident")
+  end
+
+  def alert_handover_rcv(callsign)
+    @alerts[callsign] = Alert.new(@aircrafts[callsign], "Receive Handover")
+  end
+
+  def alert_handover_snt(callsign)
+    @alerts[callsign] = Alert.new(@aircrafts[callsign], "Sent Handover")
+  end
+
 end
