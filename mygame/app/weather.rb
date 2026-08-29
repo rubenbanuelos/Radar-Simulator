@@ -96,8 +96,6 @@ def parse_weather
   winds = []
 
   data["Winds"].each do |altitude, wind|
-    puts altitude
-    
     winds.push(
     Profile.new(   
         Wind.new(

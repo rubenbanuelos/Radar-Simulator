@@ -1,6 +1,6 @@
 def add_events(s)
   s.events = {
-    10 => -> {@s.aircrafts["TRP3"].say_bearing_to(@s.waypoints["WGR"])}
+    60 => -> {@s.aircrafts["TRP3"].radar_target.squawk_ifr = true}
   }
   
 end
