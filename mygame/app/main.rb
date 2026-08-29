@@ -23,20 +23,13 @@ class Game
     @s.tz = "AST"
     @s.time_diff = -8
 
-
-
-    weather = parse_weather
-
-    @s.weather = weather
+    @s.weather = parse_weather
 
     @s.waypoints = parse_waypoints 
 
     populate(@s)
 
     add_events(@s)
-
-
-
 
     @s.begin_session args
 

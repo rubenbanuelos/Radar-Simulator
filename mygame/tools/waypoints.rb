@@ -3,7 +3,7 @@
 require 'json'
 
 waypoints = {
-  "WGR"     => ["Whitegrass",           [182.71, 61.31 ]],
+  "WGR"     => ["Whitegrass",           [165.95, 72.39 ]],
   "JOH"     => ["Johnstone Point",      [115.73, 62.82 ]],
   "MNL"     => ["Mineral Creek",        [123.46, 105.48]],
   "ANC"     => ["Anchorage",            [9.5,   109.68 ]],
@@ -20,8 +20,8 @@ waypoints = {
   "HATUL"   => ["HATUL",                [13.77,  87.01 ]],
   "HOPER"   => ["HOPER",                [22.00,  89.53 ]],
   "SNRIS"   => ["SNRIS",                [28.22,  94.73 ]],
-  "5MRWY02" => ["5MRWY02",              [183.76, 66.01 ]],
-  "5MRWY20" => ["5MRWY20",              [180.40, 56.44 ]],
+  "5MRWY02" => ["5MRWY02",              [168.81, 77.27 ]],
+  "5MRWY20" => ["5MRWY20",              [163.43, 68.03 ]],
   "5MRWY07" => ["5MRWY07",              [14.46, 111.53 ]],
   "5MRWY25" => ["5MRWY25",              [5.04,  108.00 ]],
   "PAKA"    => ["Tatitlek",             [113.71, 88.35 ]],
