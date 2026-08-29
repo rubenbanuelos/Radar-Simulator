@@ -72,15 +72,11 @@ class Game
   def tick args
     args.state.timer += 1
     @s.refresh_screen args
-
+    @s.update args
     #begin flight update loop
     if args.state.timer % 60 == 0
       @s.do_event(args.state.timer)
       @s.step
-    end
-
-    if args.state.timer % 300 == 0
-      @s.update
     end
 
   end
