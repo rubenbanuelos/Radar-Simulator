@@ -7,7 +7,7 @@ def add_events(s)
     t + 36  => -> {@s.aircrafts["RVV35"].assigned_altitude = 7000},
     t + 100 => -> {@s.aircrafts["RVV35"].assigned_heading = 315},
     t + 135 => -> {@s.alert_handover_snt("RVV35")},
-    t + 140 => -> {@s.aircrafts["RVV35"].assigned_heading = 16},
+    t + 133 => -> {@s.aircrafts["RVV35"].assigned_heading = 16},
     t + 150 => -> {@s.aircrafts["RVV35"].radar_target.in_control = false},
     t + 254 => -> {@s.aircrafts.delete("RVV55")}
   }
@@ -52,9 +52,17 @@ def add_events(s)
     t + 0   => -> {@s.aircrafts["FDX792"].assigned_waypoint = @s.waypoints["JOVOM"]}
   }
 
-  t = 0
+  t = 28
   s.events["AAL1151"] = {
-    t + 28   => -> {@s.aircrafts["AAL1151"].assigned_altitude = 8000}
+    t + 0   => -> {@s.aircrafts["AAL1151"].assigned_altitude = 35000},
+    t + 75  => -> {@s.aircrafts["AAL1151"].assigned_heading = 180},
+    t + 165 => -> {@s.aircrafts["AAL1151"].assigned_waypoint = @s.waypoints["SNRIS"]},
+    t + 337 => -> {@s.aircrafts["AAL1151"].radar_target.in_control = true},
+    t + 345 => -> {@s.aircrafts["AAL1151"].assigned_waypoint = @s.waypoints["JOH"]}
+  }
+  
+  s.events["AAL1151 Alerts"] = {
+    t + 337 => -> {@s.alert_handover_rcv("AAL1151")}
   }
 
 end
