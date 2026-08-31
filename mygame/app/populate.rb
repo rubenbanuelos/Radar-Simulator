@@ -11,6 +11,7 @@ def populate(s)
     s.lobby["TRP3"].heading = 295
     s.lobby["TRP3"].assigned_waypoint = @s.waypoints["WGR"]
     s.lobby["TRP3"].radar_target.squawk_ifr = false
+    s.lobby["TRP3"].radar_target.tag_position = "TR"
 
     s.add_aircraft_to_lobby("ACA1754")
     s.lobby["ACA1754"].altitude = 36000
@@ -20,6 +21,7 @@ def populate(s)
     s.lobby["ACA1754"].heading = 196
     s.lobby["ACA1754"].assigned_waypoint = @s.waypoints["JOH"]
     s.lobby["ACA1754"].radar_target.in_control = false
+    s.lobby["ACA1754"].radar_target.tag_position = "TL"
 
     s.add_aircraft_to_lobby("RVV35")
     s.lobby["RVV35"].altitude = 128
@@ -44,6 +46,7 @@ def populate(s)
     s.aircrafts["N721SQ"].position = Position.new(115.73, 62.82)
     s.aircrafts["N721SQ"].heading = 105
     s.aircrafts["N721SQ"].assigned_waypoint = @s.waypoints["JOVOM"]
+    s.aircrafts["N721SQ"].radar_target.tag_position = "BL"
 
     s.add_aircraft("FDX792")
     s.aircrafts["FDX792"].altitude = 37000
@@ -52,6 +55,7 @@ def populate(s)
     s.aircrafts["FDX792"].position = Position.new(44.01, 43.17)
     s.aircrafts["FDX792"].heading = 74
     s.aircrafts["FDX792"].assigned_waypoint = @s.waypoints["JOH"]
+    s.aircrafts["FDX792"].radar_target.tag_position = "BL"
 
     
     #s.aircrafts["TEST"].radar_target.emergency = true

@@ -113,8 +113,10 @@ class Session
   def do_event(tick)
     #Convert time to ticks
 
-    events.each do |time, event|
-      event.call if tick == time*60
+    events.each_value do |aircraft|
+      aircraft.each do |time, event|
+        event.call if tick == time*60
+      end
     end
 
   end
