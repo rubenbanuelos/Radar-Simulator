@@ -45,7 +45,7 @@ def populate(s)
     s.aircrafts["N721SQ"].type = "C550"
     s.aircrafts["N721SQ"].position = Position.new(115.73, 62.82)
     s.aircrafts["N721SQ"].heading = 105
-    s.aircrafts["N721SQ"].assigned_waypoint = @s.waypoints["JOVOM"]
+    s.aircrafts["N721SQ"].assigned_waypoint = s.waypoints["JOVOM"]
     s.aircrafts["N721SQ"].radar_target.tag_position = "BL"
 
     s.add_aircraft("FDX792")
@@ -54,9 +54,17 @@ def populate(s)
     s.aircrafts["FDX792"].type = "B77L"
     s.aircrafts["FDX792"].position = Position.new(44.01, 43.17)
     s.aircrafts["FDX792"].heading = 74
-    s.aircrafts["FDX792"].assigned_waypoint = @s.waypoints["JOH"]
+    s.aircrafts["FDX792"].assigned_waypoint = s.waypoints["JOH"]
     s.aircrafts["FDX792"].radar_target.tag_position = "BL"
 
+    s.add_aircraft("AAL1151")
+    s.aircrafts["AAL1151"].altitude = 100
+    s.aircrafts["AAL1151"].ias = 0
+    s.aircrafts["AAL1151"].type = "B752"
+    s.aircrafts["AAL1151"].position = s.waypoints["ANC"].position
+    s.aircrafts["AAL1151"].heading = 70
+    s.aircrafts["AAL1151"].radar_target.tag_position = "BL"
+    s.aircrafts["AAL1151"].radar_target.in_control = false
     
     #s.aircrafts["TEST"].radar_target.emergency = true
     #s.aircrafts["TEST"].radar_target.mva = true    

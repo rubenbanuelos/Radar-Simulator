@@ -7,7 +7,7 @@ require_relative "global_params"
 class Aircraft
   
   attr_accessor :autopilot, :altitude, :heading, :ias, :position, :type, :wake_category, :trk, :gspd
-  attr_accessor :turn_rate, :radar_target
+  attr_accessor :turn_rate, :radar_target, :updated
   attr_accessor :turn_rate, :climb_profile, :descent_profile, :top_speed, :cruise_speed, :stall_speed, :acceleration_profile, :deceleration_profile, :ceiling, :climb_speed, :descent_speed
   attr_accessor :assigned_altitude, :assigned_heading, :assigned_waypoint, :assigned_speed
   attr_accessor :ho_rcv, :ho_snt, :snt_countdown, :rcv_countdown
@@ -51,9 +51,11 @@ class Aircraft
     @autopilot = Autopilot.new(self)
 
     @radar_target = RadarTarget.new(@callsign)
+    @updated = false #this flag is used to check if the aircraft has already been updated during a single radar sweep and prevents a single aircraft from being updated multiple times.
   end
 
   def update_target
+    @updated = true
     @radar_target.type = @type
     @radar_target.cat = @wake_category
     @radar_target.alt = format("%03d",(@altitude/100))
@@ -65,7 +67,7 @@ class Aircraft
     unless @radar_target.contact_lost
       @radar_target.ghosts.push(@radar_target.loc)
     else
-      @radar_target.ghosts.push(Position.new(-4,-4))
+      @radar_target.ghosts.push(Position.new(-20,-20))
     end
 
     @radar_target.loc = @position.dup
@@ -87,14 +89,12 @@ class Aircraft
 
   def populate_ghosts
     #extrapolate previous positions based on current speed to create initial set of ghost tracks
-    reverse_heading = (@heading + 180) % 360 #Obtain heading opposite to the aircraft current movement
-    step = get_cartesian_coordinates(@ias / 720, reverse_heading)
 
     for i in 1..5
       @radar_target.ghosts.push(
         Position.new(
-          @position.x, 
-          @position.y
+          @position.x * GlobalParams::SCALE_FACTOR, 
+          @position.y * GlobalParams::SCALE_FACTOR
         )
       )
     end

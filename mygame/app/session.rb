@@ -104,9 +104,19 @@ class Session
     @aircrafts.each_value do |aircraft|
       angle = ((aircraft.sweep_angle * 150/Math::PI).round + 300) % 300
       slice = args.state.timer % 300
-      if angle == slice
-        aircraft.update_target
+      
+      #Resets updated flag at the beginning of sweep
+      if slice == 0
+        aircraft.updated = false
       end
+      
+      if angle == slice
+        #Checks updated flag and makes sure that the aircraft hasnt already been updated during this radar sweep
+        unless aircraft.updated
+          aircraft.update_target
+        end
+      end
+      
     end
   end
 
