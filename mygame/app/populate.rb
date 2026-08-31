@@ -2,12 +2,12 @@
 
 def populate(s)
 
-
+    #Aircrafts in lobby
     s.add_aircraft_to_lobby("TRP3")
     s.lobby["TRP3"].altitude = 6500
     s.lobby["TRP3"].ias = 95
     s.lobby["TRP3"].type = "B06T"
-    s.lobby["TRP3"].position = Position.new(202.40, 55.20)
+    s.lobby["TRP3"].position = Position.new(202.40, 47.20)
     s.lobby["TRP3"].heading = 295
     s.lobby["TRP3"].assigned_waypoint = @s.waypoints["WGR"]
     s.lobby["TRP3"].radar_target.squawk_ifr = false
@@ -21,7 +21,14 @@ def populate(s)
     s.lobby["ACA1754"].assigned_waypoint = @s.waypoints["JOH"]
     s.lobby["ACA1754"].radar_target.in_control = false
 
+    s.add_aircraft_to_lobby("RVV35")
+    s.lobby["RVV35"].altitude = 128
+    s.lobby["RVV35"].ias = 0
+    s.lobby["RVV35"].type = "BE20"
+    s.lobby["RVV35"].position = s.waypoints["PAVD"].position
+    s.lobby["RVV35"].heading = 60
 
+    #Aircrafts on radar screen
     s.add_aircraft("QXE178")
     s.aircrafts["QXE178"].altitude = 500
     s.aircrafts["QXE178"].ias = 170
@@ -31,10 +38,10 @@ def populate(s)
     s.aircrafts["QXE178"].assigned_altitude = 25000
 
     s.add_aircraft("N721SQ")
-    s.aircrafts["N721SQ"].altitude = 38000
+    s.aircrafts["N721SQ"].altitude = 37000
     s.aircrafts["N721SQ"].ias = 284
     s.aircrafts["N721SQ"].type = "C550"
-    s.aircrafts["N721SQ"].position = Position.new(140.98, 55.67)
+    s.aircrafts["N721SQ"].position = Position.new(115.73, 62.82)
     s.aircrafts["N721SQ"].heading = 105
     s.aircrafts["N721SQ"].assigned_waypoint = @s.waypoints["JOVOM"]
 
