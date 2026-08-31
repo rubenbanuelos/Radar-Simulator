@@ -28,7 +28,7 @@ def add_events(s)
   s.events["ACA1754"] = {
     t + 0   => -> {@s.spawn_aicraft(@s.lobby["ACA1754"])},
     t + 20  => -> {@s.aircrafts["ACA1754"].radar_target.in_control = true},
-    t + 315 => -> {@s.aircrafts["ACA1754"].assigned_waypoint = @s.waypoints["ANC"]}
+    t + 322 => -> {@s.aircrafts["ACA1754"].assigned_waypoint = @s.waypoints["SNRIS"]}
   }
 
   s.events["ACA1754 Alerts"] = {
@@ -46,10 +46,15 @@ def add_events(s)
     t + 0   => -> {@s.aircrafts["QXE178"].assigned_waypoint = @s.waypoints["FORAT"]}
   }
 
-  t = 460
+  t = 462
 
   s.events["FDX792"] = {
     t + 0   => -> {@s.aircrafts["FDX792"].assigned_waypoint = @s.waypoints["JOVOM"]}
+  }
+
+  t = 0
+  s.events["AAL1151"] = {
+    t + 28   => -> {@s.aircrafts["AAL1151"].assigned_altitude = 8000}
   }
 
 end
