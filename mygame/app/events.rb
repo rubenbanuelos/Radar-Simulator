@@ -1,15 +1,15 @@
 def add_events(s)
   
-  t = 146
+  t = 194
 
   s.events["RVV35"] = {
     t + 0   => -> {@s.spawn_aicraft(@s.lobby["RVV35"])},
-    t + 36  => -> {@s.aircrafts["RVV35"].assigned_altitude = 7000},
-    t + 100 => -> {@s.aircrafts["RVV35"].assigned_heading = 315},
-    t + 135 => -> {@s.alert_handover_snt("RVV35")},
-    t + 133 => -> {@s.aircrafts["RVV35"].assigned_heading = 16},
-    t + 150 => -> {@s.aircrafts["RVV35"].radar_target.in_control = false},
-    t + 254 => -> {@s.aircrafts.delete("RVV55")}
+    t + 36  => -> {@s.aircrafts["RVV35"].assigned_altitude = 9000},
+    t + 126 => -> {@s.aircrafts["RVV35"].assigned_heading = 315},
+    t + 150 => -> {@s.alert_handover_snt("RVV35")},
+    t + 159 => -> {@s.aircrafts["RVV35"].radar_target.in_control = false},
+    t + 175 => -> {@s.aircrafts["RVV35"].assigned_heading = 16},
+    t + 278 => -> {@s.aircrafts.delete("RVV55")}
   }
   
   t = 5
@@ -23,7 +23,7 @@ def add_events(s)
     t + 50  => -> {@s.alert_ident("TRP3")},
   }
 
-  t = 80
+  t = 70
   
   s.events["ACA1754"] = {
     t + 0   => -> {@s.spawn_aicraft(@s.lobby["ACA1754"])},
@@ -63,6 +63,17 @@ def add_events(s)
   
   s.events["AAL1151 Alerts"] = {
     t + 337 => -> {@s.alert_handover_rcv("AAL1151")}
+  }
+
+  t = 0
+  
+  s.events["ASA291"] = {
+    112 => -> {@s.alert_handover_snt("ASA291")},
+    121 => -> {@s.aircrafts["ASA291"].radar_target.in_control = false},
+    150 => -> {@s.aircrafts["ASA291"].assigned_waypoint = @s.waypoints["ANC"]},
+    165 => -> {@s.aircrafts["ASA291"].assigned_altitude = 6000},
+    249 => -> {@s.aircrafts["ASA291"].assigned_waypoint = nil},
+    250 => -> {@s.aircrafts["ASA291"].assigned_heading = 280}
   }
 
 end

@@ -21,7 +21,7 @@ def populate(s)
     s.lobby["ACA1754"].heading = 196
     s.lobby["ACA1754"].assigned_waypoint = @s.waypoints["JOH"]
     s.lobby["ACA1754"].radar_target.in_control = false
-    s.lobby["ACA1754"].radar_target.tag_position = "TL"
+    s.lobby["ACA1754"].radar_target.tag_position = "TR"
 
     s.add_aircraft_to_lobby("RVV35")
     s.lobby["RVV35"].altitude = 128
@@ -29,6 +29,7 @@ def populate(s)
     s.lobby["RVV35"].type = "BE20"
     s.lobby["RVV35"].position = s.waypoints["PAVD"].position
     s.lobby["RVV35"].heading = 60
+    s.lobby["RVV35"].radar_target.tag_position = "BL"
 
     #Aircrafts on radar screen
     s.add_aircraft("QXE178")
@@ -38,6 +39,7 @@ def populate(s)
     s.aircrafts["QXE178"].position = Position.new(167, 74)
     s.aircrafts["QXE178"].heading = 20
     s.aircrafts["QXE178"].assigned_altitude = 25000
+    s.aircrafts["QXE178"].radar_target.tag_position = "BL"
 
     s.add_aircraft("N721SQ")
     s.aircrafts["N721SQ"].altitude = 37000
@@ -65,6 +67,16 @@ def populate(s)
     s.aircrafts["AAL1151"].heading = 70
     s.aircrafts["AAL1151"].radar_target.tag_position = "BL"
     s.aircrafts["AAL1151"].radar_target.in_control = false
+
+    s.add_aircraft("ASA291")
+    s.aircrafts["ASA291"].altitude = 10100
+    s.aircrafts["ASA291"].ias = 250
+    s.aircrafts["ASA291"].type = "B738"
+    s.aircrafts["ASA291"].position = Position.new(37.64, 91.41)
+    s.aircrafts["ASA291"].assigned_waypoint = s.waypoints["SNRIS"]
+    s.aircrafts["ASA291"].heading = 295
+    s.aircrafts["ASA291"].radar_target.tag_position = "TR"
+    s.aircrafts["ASA291"].assigned_altitude = 8000
     
     #s.aircrafts["TEST"].radar_target.emergency = true
     #s.aircrafts["TEST"].radar_target.mva = true    

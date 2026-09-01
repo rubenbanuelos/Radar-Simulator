@@ -148,6 +148,9 @@ class Aircraft
     puts @heading
   end
 
+  def say_altitude
+    puts @altitude
+  end
   def say_distance_to(wp)
     
     dx = wp.position.x - @position.x
