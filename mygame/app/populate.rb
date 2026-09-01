@@ -6,7 +6,7 @@ def populate(s)
     s.add_aircraft_to_lobby("TRP3")
     s.lobby["TRP3"].altitude = 6500
     s.lobby["TRP3"].ias = 95
-    s.lobby["TRP3"].type = "B06T"
+    s.lobby["TRP3"].type = "AS50"
     s.lobby["TRP3"].position = Position.new(202.40, 47.20)
     s.lobby["TRP3"].heading = 295
     s.lobby["TRP3"].assigned_waypoint = @s.waypoints["WGR"]
@@ -22,6 +22,16 @@ def populate(s)
     s.lobby["ACA1754"].assigned_waypoint = @s.waypoints["JOH"]
     s.lobby["ACA1754"].radar_target.in_control = false
     s.lobby["ACA1754"].radar_target.tag_position = "TR"
+
+    s.add_aircraft_to_lobby("DAL1285")
+    s.lobby["DAL1285"].altitude = 36000
+    s.lobby["DAL1285"].ias = 288
+    s.lobby["DAL1285"].type = "B752"
+    s.lobby["DAL1285"].position = Position.new(212.31, 36.45)
+    s.lobby["DAL1285"].heading = 295
+    s.lobby["DAL1285"].assigned_waypoint = @s.waypoints["JOH"]
+    s.lobby["DAL1285"].radar_target.in_control = false
+    s.lobby["DAL1285"].radar_target.tag_position = "TR"
 
     s.add_aircraft_to_lobby("RVV35")
     s.lobby["RVV35"].altitude = 128

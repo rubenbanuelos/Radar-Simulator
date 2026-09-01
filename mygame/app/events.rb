@@ -76,4 +76,6 @@ def add_events(s)
     250 => -> {@s.aircrafts["ASA291"].assigned_heading = 280}
   }
 
+  s.events["DAL"]
+
 end

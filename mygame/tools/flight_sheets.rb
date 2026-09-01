@@ -39,7 +39,8 @@ catalog = {
   "B763" => {:type => "Jet", :category => "H"},
   "BE58" => {:type => "Piston Multi-Engine", :category => "L"},
   "B06T" => {:type => "Helicopter", :category => "L"},
-  "C550" => {:type => "Jet", :category => "L"}
+  "C550" => {:type => "Jet", :category => "L"},
+  "AS50" => {:type => "Helicopter", :category => "L"}
 }
 
 catalog.default = {:type => "Piston Single-Engine", :category => "L"}
