@@ -1,21 +1,21 @@
 * EXCEPTION:
-* ERROR: :assigned_heading= method missing on ~Class~.
+* ERROR: :speed= method missing on ~Aircraft~.
 
-#+begin_src ~Class#inspect~
-NIL
-#+end_src ~Class#inspect~
+#+begin_src ~Aircraft#inspect~
+#<Aircraft:0x1c1be7c8de0 @top_speed=[#<struct Profile value=130, altitude=0.0>, #<struct Profile value=80, altitude=13500.0>], @stall_speed=0.0, @assigned_heading=nil, @ceieling=13500.0, @cruise_speed=[#<struct Profile value=110, altitude=0.0>, #<struct Profile value=70, altitude=13500.0>], @descent_profile=[#<struct Profile value=-150, altitude=0.0>, #<struct Profile value=-500, altitude=200.0>, #<struct Profile value=-1000, altitude=1000.0>, #<struct Profile value=-2000, altitude=10000.0>, #<struct Profile value=-2500, altitude=13500.0>], @assigned_altitude=nil, @descent_speed=[#<struct Profile value=80, altitude=0.0>, #<struct Profile value=120, altitude=10000.0>, #<struct Profile value=90, altitude=13500.0>], @climb_speed=[#<struct Profile value=90, altitude=0.0>, #<struct Profile value=50, altitude=13500.0>], @acceleration_profile=[#<struct Profile value=1, altitude=0.0>, #<struct Profile value=2, altitude=1000.0>, #<struct Profile value=1, altitude=13500.0>], @altitude=6200, @gspd=89.96198225339486, @trk=304.4410191413322, @ceiling=13500.0, @wake_category="L", @heading=314.3250461572328, @climb_profile=[#<struct Profile value=2000, altitude=0.0>, #<struct Profile value=1500, altitude=2000.0>, #<struct Profile value=1000, altitude=10000.0>, #<struct Profile value=1, altitude=13500.0>], @type="AS50", @ias=90.74074074074074, @turn_rate=3.0, @autopilot=#<Autopilot:0x1c1be7c8c00>, @updated=false, @radar_target=#<RadarTarget:0x1c1be7c8b70>, @position=#<struct Position x=196.3059517861602, y=51.37689755361818>, @assigned_waypoint=#<struct Waypoint name="Whitegrass", position=#<struct Position x=165.95, y=72.39>>, @deceleration_profile=[#<struct Profile value=-1, altitude=0.0>, #<struct Profile value=-2, altitude=13500.0>], @assigned_speed=nil, @callsign="TRP3">
+#+end_src ~Aircraft#inspect~
 
 
 
 The method named
-  :assigned_heading=
+  :speed=
 with args
-  [315]
-doesn't exist on [NilClass].
+  [100]
+doesn't exist on [Aircraft, #<Class:#<Aircraft:0x1c1be7c8de0>>].
 
 (suggestions above)
 ** Backtrace:
-*** app/events.rb:9:in add_events
+*** app/events.rb:111:in add_events
 *** app/session.rb:128:in do_event
 *** app/session.rb:127:in do_event
 *** app/session.rb:126:in do_event

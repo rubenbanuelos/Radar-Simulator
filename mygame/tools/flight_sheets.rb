@@ -404,7 +404,7 @@ profile_sheets = {
 
     "Cruise Speed" => {
       0     => 160,
-      12000 => 120
+      1200 => 120
     },
 
 
@@ -420,8 +420,8 @@ profile_sheets = {
     },
 
     "Top Speed" => {
-      0     => 180, 
-      10000 => 160
+      0     => 220, 
+      10000 => 180
     },
 
     "Acceleration" => {

@@ -1,4 +1,29 @@
 def add_events(s)
+
+  t = 230
+
+  s.events["NRA11"] = {
+    t + 0   => -> {s.aircrafts["NRA11"].radar_target.squawk_ifr = false},
+    t + 1   => -> {s.aircrafts["NRA11"].assigned_altitude = 1000},
+    t + 20  => -> {s.aircrafts["NRA11"].assigned_speed = 100},
+    t + 20  => -> {s.aircrafts["NRA11"].assigned_waypoint = nil},
+    t + 115 => -> {s.aircrafts["NRA11"].assigned_heading = 40},
+    t + 140 => -> {s.aircrafts["NRA11"].assigned_heading = 130},
+    t + 160 => -> {s.aircrafts["NRA11"].assigned_altitude = 800},
+    t + 200 => -> {s.aircrafts["NRA11"].assigned_altitude = 0},
+    t + 201 => -> {s.aircrafts["NRA11"].assigned_speed = 0},
+    t + 350 => -> {s.aircrafts.delete("NRA11")}
+  }
+  
+  t = 1
+
+  s.events["DAL1285"] = {
+    t + 0   => -> {s.spawn_aicraft(s.lobby["DAL1285"])}
+  }
+
+  s.events["DAL1285 Alerts"] = {
+    t + 66 => -> {@s.alert_handover_rcv("DAL1285")}
+  }
   
   t = 194
 
@@ -15,8 +40,9 @@ def add_events(s)
   t = 5
 
   s.events["TRP3"] = {
-    t + 0   => -> {@s.spawn_aicraft(@s.lobby["TRP3"])},
-    t + 50  => -> {@s.aircrafts["TRP3"].radar_target.squawk_ifr = true}
+    t + 0   => -> {s.spawn_aicraft(@s.lobby["TRP3"])},
+    t + 50  => -> {s.aircrafts["TRP3"].radar_target.squawk_ifr = true},
+    t + 344 => -> {s.aircrafts["TRP3"].radar_target.emergency = true}
   }
 
   s.events["TRP3 Alerts"] = {
@@ -64,18 +90,59 @@ def add_events(s)
   s.events["AAL1151 Alerts"] = {
     t + 337 => -> {@s.alert_handover_rcv("AAL1151")}
   }
-
-  t = 0
+  
+  t = 112
   
   s.events["ASA291"] = {
-    112 => -> {@s.alert_handover_snt("ASA291")},
-    121 => -> {@s.aircrafts["ASA291"].radar_target.in_control = false},
-    150 => -> {@s.aircrafts["ASA291"].assigned_waypoint = @s.waypoints["ANC"]},
-    165 => -> {@s.aircrafts["ASA291"].assigned_altitude = 6000},
-    249 => -> {@s.aircrafts["ASA291"].assigned_waypoint = nil},
-    250 => -> {@s.aircrafts["ASA291"].assigned_heading = 280}
+    t + 0   => -> {@s.alert_handover_snt("ASA291")},
+    t + 9   => -> {@s.aircrafts["ASA291"].radar_target.in_control = false},
+    t + 38  => -> {@s.aircrafts["ASA291"].assigned_waypoint = @s.waypoints["ANC"]},
+    t + 53  => -> {@s.aircrafts["ASA291"].assigned_altitude = 6000},
+    t + 137 => -> {@s.aircrafts["ASA291"].assigned_waypoint = nil},
+    t + 138 => -> {@s.aircrafts["ASA291"].assigned_heading = 280}
   }
 
-  s.events["DAL"]
+  t = 320
+
+  s.events["TPR3 Emergency alt"] = {
+    t + 0  => -> {@s.aircrafts["TRP3"].altitude = 6200},
+    t + 5  => -> {@s.aircrafts["TRP3"].altitude = 6100},
+    t + 5  => -> {@s.aircrafts["TRP3"].altitude = 5900},
+    t + 10 => -> {@s.aircrafts["TRP3"].altitude = 5800},
+    t + 20 => -> {@s.aircrafts["TRP3"].altitude = 6000},
+    t + 25 => -> {@s.aircrafts["TRP3"].altitude = 6100},
+    t + 30 => -> {@s.aircrafts["TRP3"].altitude = 6200},
+    t + 35 => -> {@s.aircrafts["TRP3"].altitude = 5900},
+    t + 40 => -> {@s.aircrafts["TRP3"].altitude = 5700},
+    t + 45 => -> {@s.aircrafts["TRP3"].altitude = 5400},
+    t + 50 => -> {@s.aircrafts["TRP3"].altitude = 5500},
+    t + 60 => -> {@s.aircrafts["TRP3"].altitude = 5600},
+    t + 65 => -> {@s.aircrafts["TRP3"].altitude = 5500},
+    t + 75 => -> {@s.aircrafts["TRP3"].altitude = 5600},
+    t + 85 => -> {@s.aircrafts["TRP3"].altitude = 5700},
+    t + 90 => -> {@s.aircrafts["TRP3"].altitude = 5600},
+    t + 95 => -> {@s.aircrafts["TRP3"].altitude = 5700},
+  }
+
+  s.events["TPR3 Emergency spd"] = {
+    t + 0  => -> {@s.aircrafts["TRP3"].ias = 110},
+    t + 5  => -> {@s.aircrafts["TRP3"].ias = 115},
+    t + 5  => -> {@s.aircrafts["TRP3"].ias = 120},
+    t + 10 => -> {@s.aircrafts["TRP3"].ias = 125},
+  }
+
+  s.events["TPR3 Emergency hdg"] = {
+    t + 0   => -> {@s.aircrafts["TRP3"].assigned_waypoint = nil},
+    t + 5   => -> {@s.aircrafts["TRP3"].heading = 225},
+    t + 10  => -> {@s.aircrafts["TRP3"].heading = 180},
+    t + 20  => -> {@s.aircrafts["TRP3"].heading = 315},
+    t + 55  => -> {@s.aircrafts["TRP3"].heading = 300},
+    t + 75  => -> {@s.aircrafts["TRP3"].heading = 275},
+    t + 100 => -> {@s.aircrafts["TRP3"].heading = 245},
+    t + 105 => -> {@s.aircrafts["TRP3"].heading = 225},
+    t + 110 => -> {@s.aircrafts["TRP3"].heading = 200},
+    t + 105 => -> {@s.aircrafts["TRP3"].heading = 180},
+  }
+
 
 end
